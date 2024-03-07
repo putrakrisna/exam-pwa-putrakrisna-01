@@ -108,7 +108,7 @@ const ProductList = (props) => {
         setFilterSaved(true);
         let queryParams = '';
         // eslint-disable-next-line array-callback-return
-        Object.keys(v).map((key) => {
+        Object.keys(v).forEach((key) => {
             if (key === 'selectedFilter') {
                 // eslint-disable-next-line no-restricted-syntax
                 for (const idx in v.selectedFilter) {

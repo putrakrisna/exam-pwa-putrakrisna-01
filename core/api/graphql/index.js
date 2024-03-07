@@ -138,7 +138,7 @@ const createApolloServer = async () => {
 const graphqlApi = async (req, res) => {
     const apolloServer = await createApolloServer();
 
-    const handler = await startServerAndCreateNextHandler(apolloServer, {
+    const handler = startServerAndCreateNextHandler(apolloServer, {
         context: (request, response) => ({ req: request, res: response }),
     });
 

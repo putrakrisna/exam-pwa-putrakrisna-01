@@ -163,7 +163,7 @@ const Shipping = (props) => {
 
                         let selectedShipping = '';
                         // eslint-disable-next-line array-callback-return
-                        GTMShippingMethod.map((item, index) => {
+                        GTMShippingMethod.forEach((item, index) => {
                             if (index !== GTMShippingMethod.length - 1) selectedShipping += `${item.label}| `;
                             else selectedShipping += `${item.label}`;
                         });

@@ -88,7 +88,7 @@ const CoreMultiseller = (props) => {
 
     React.useEffect(() => {
         if (customerOrder) {
-            customerOrder.map((orders) => {
+            customerOrder.forEach((orders) => {
                 // GTM UA dataLayer
                 const dataLayer = {
                     pageType: 'purchase',

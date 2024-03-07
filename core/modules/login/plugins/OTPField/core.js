@@ -12,7 +12,7 @@ import {
 
 const OtpBlock = (props) => {
     const {
-        phoneNumber, type, View, onSubmit = () => { }, value = '', setDisabled,
+        phoneNumber, type, View, onSubmit = () => {}, value = '', setDisabled,
     } = props;
     const { t } = useTranslation(['otp', 'common']);
     const [time, setTime] = React.useState(0);
@@ -30,7 +30,7 @@ const OtpBlock = (props) => {
     const { loading, data } = otpConfig();
 
     const handleSend = () => {
-        let sendOtp = () => { };
+        let sendOtp;
         if (type === 'register') {
             sendOtp = actRequestOtpRegister;
         } else if (type === 'forgotPassword') {
@@ -46,43 +46,47 @@ const OtpBlock = (props) => {
                 variant: 'warning',
             });
         } else if (time <= 0) {
-            window.backdropLoader(true);
-            sendOtp({
-                variables: {
-                    phoneNumber,
-                },
-            }).then(() => {
-                window.backdropLoader(false);
-                setManySend(manySend + 1);
-                // eslint-disable-next-line no-nested-ternary
-                setTime(config && config.expired ? config.expired : 60);
-                window.toastMessage({
-                    open: true,
-                    text: t('otp:sendSuccess'),
-                    variant: 'success',
-                });
-            }).catch((e) => {
-                window.backdropLoader(false);
-                if (e.message === 'phone number is already Registered') {
-                    window.toastMessage({
-                        open: true,
-                        text: `${t('otp:registerOtpFailed', { phoneNumber })}`,
-                        variant: 'error',
+            if (sendOtp) {
+                window.backdropLoader(true);
+                sendOtp({
+                    variables: {
+                        phoneNumber,
+                    },
+                })
+                    .then(() => {
+                        window.backdropLoader(false);
+                        setManySend(manySend + 1);
+                        // eslint-disable-next-line no-nested-ternary
+                        setTime(config && config.expired ? config.expired : 60);
+                        window.toastMessage({
+                            open: true,
+                            text: t('otp:sendSuccess'),
+                            variant: 'success',
+                        });
+                    })
+                    .catch((e) => {
+                        window.backdropLoader(false);
+                        if (e.message === 'phone number is already Registered') {
+                            window.toastMessage({
+                                open: true,
+                                text: `${t('otp:registerOtpFailed', { phoneNumber })}`,
+                                variant: 'error',
+                            });
+                        } else if (e.message === 'Max retries exceeded') {
+                            window.toastMessage({
+                                open: true,
+                                text: `${t('otp:registerOtpTooManyRetries', { phoneNumber })}`,
+                                variant: 'error',
+                            });
+                        } else {
+                            window.toastMessage({
+                                open: true,
+                                text: e.message.split(':')[1] || t('otp:sendFailed'),
+                                variant: 'error',
+                            });
+                        }
                     });
-                } else if (e.message === 'Max retries exceeded') {
-                    window.toastMessage({
-                        open: true,
-                        text: `${t('otp:registerOtpTooManyRetries', { phoneNumber })}`,
-                        variant: 'error',
-                    });
-                } else {
-                    window.toastMessage({
-                        open: true,
-                        text: e.message.split(':')[1] || t('otp:sendFailed'),
-                        variant: 'error',
-                    });
-                }
-            });
+            }
         } else {
             window.toastMessage({
                 open: true,
@@ -95,7 +99,7 @@ const OtpBlock = (props) => {
     const handleCheck = () => {
         setDisabled(true);
         window.backdropLoader(true);
-        let checkOtp = () => { };
+        let checkOtp;
         if (type === 'register') {
             checkOtp = actCheckOtpRegister;
         } else if (type === 'forgotPassword') {
@@ -104,43 +108,47 @@ const OtpBlock = (props) => {
             checkOtp = actCheckOtpLogin;
         }
 
-        checkOtp({
-            variables: {
-                phoneNumber,
-                otp: value,
-            },
-        }).then((res) => {
-            window.backdropLoader(false);
-            let isValid;
-            if (type === 'register') isValid = res.data.checkOtpRegister.is_valid_otp;
-            if (type === 'forgotPassword') isValid = res.data.checkOtpForgotPassword.is_valid_otp;
-            if (type === 'login') isValid = res.data.checkOtpLogin.is_valid_otp;
-            if (isValid) {
-                window.toastMessage({
-                    variant: 'success',
-                    open: true,
-                    text: t('otp:valid'),
+        if (checkOtp) {
+            checkOtp({
+                variables: {
+                    phoneNumber,
+                    otp: value,
+                },
+            })
+                .then((res) => {
+                    window.backdropLoader(false);
+                    let isValid;
+                    if (type === 'register') isValid = res.data.checkOtpRegister.is_valid_otp;
+                    if (type === 'forgotPassword') isValid = res.data.checkOtpForgotPassword.is_valid_otp;
+                    if (type === 'login') isValid = res.data.checkOtpLogin.is_valid_otp;
+                    if (isValid) {
+                        window.toastMessage({
+                            variant: 'success',
+                            open: true,
+                            text: t('otp:valid'),
+                        });
+                        onSubmit();
+                    } else {
+                        setDisabled(false);
+                        setOtpFalse(true);
+                        window.toastMessage({
+                            variant: 'error',
+                            open: true,
+                            text: t('otp:invalid'),
+                        });
+                    }
+                })
+                .catch(() => {
+                    setDisabled(false);
+                    setOtpFalse(true);
+                    window.backdropLoader(false);
+                    window.toastMessage({
+                        variant: 'error',
+                        open: true,
+                        text: t('otp:invalid'),
+                    });
                 });
-                onSubmit();
-            } else {
-                setDisabled(false);
-                setOtpFalse(true);
-                window.toastMessage({
-                    variant: 'error',
-                    open: true,
-                    text: t('otp:invalid'),
-                });
-            }
-        }).catch(() => {
-            setDisabled(false);
-            setOtpFalse(true);
-            window.backdropLoader(false);
-            window.toastMessage({
-                variant: 'error',
-                open: true,
-                text: t('otp:invalid'),
-            });
-        });
+        }
     };
 
     React.useEffect(() => {

@@ -96,8 +96,6 @@ const OptionsItemDownload = ({
         setPrice(final_price_value);
     };
 
-    const handleOptionAll = () => {};
-
     const addToCart = async () => {
         const isLogin = getLoginInfo();
         let cartId = getCartId();
@@ -280,7 +278,6 @@ const OptionsItemDownload = ({
             linksTitle={linksTitle}
             downloadProductSamples={downloadProductSamples}
             handleAddToCart={handleAddToCart}
-            handleOptionAll={handleOptionAll}
             handleOptionDownloadable={handleOptionDownloadable}
             t={t}
             qty={qty}

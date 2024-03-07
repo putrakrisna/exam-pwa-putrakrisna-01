@@ -99,7 +99,7 @@ const CustomAutocomplete = (props) => {
                         'hover:cursor-pointer',
                         popoverContentClassName,
                     )}
-                    onClick={() => handleSelectItem(propsPopoverItem)}
+                    onClick={() => handleSelectItem()}
                     role="presentation"
                 >
                     <div className={cx('title-category', 'block', 'text-sm', 'uppercase')} aria-current={optionValue}>
