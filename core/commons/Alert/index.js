@@ -9,16 +9,16 @@ const Alert = ({
     children, severity, withIcon = false, className = '', classChildren = '', iconClassName = '',
 }) => {
     let classNamesText = 'text-green-600';
-    let classNamesAlert = cx('bg-green-50', 'border-l-green-600', 'border-green-600');
+    let classNamesAlert = cx('swift-alert-success', 'bg-green-50', 'border-l-green-600', 'border-green-600');
 
     if (severity === 'warning') {
         classNamesText = 'text-yellow-600';
-        classNamesAlert = cx('bg-yellow-50', 'border-l-yellow-600', 'border-yellow-600');
+        classNamesAlert = cx('swift-alert-warning', 'bg-yellow-50', 'border-l-yellow-600', 'border-yellow-600');
     }
 
     if (severity === 'error') {
         classNamesText = 'text-red-600';
-        classNamesAlert = cx('bg-red-50', 'border-l-red-600', 'border-red-600');
+        classNamesAlert = cx('swift-alert-error', 'bg-red-50', 'border-l-red-600', 'border-red-600');
     }
 
     // Icon

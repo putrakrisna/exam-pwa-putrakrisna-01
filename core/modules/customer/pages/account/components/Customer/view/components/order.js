@@ -73,7 +73,7 @@ const OrderView = (props) => {
     };
 
     return (
-        <div className={cx('pt-10', '')}>
+        <div className={cx('pt-10', 'swift-customer-account-order')}>
             <div
                 className={cx(
                     'address-title-section',
@@ -86,7 +86,7 @@ const OrderView = (props) => {
                     'items-center',
                 )}
             >
-                <Typography variant="h3" className={cx('pl-0')}>
+                <Typography id="swiftCustomerOrderLabel" variant="h3" className={cx('pl-0')}>
                     {t('customer:order:recentOrder')}
                 </Typography>
                 <Button link="/sales/order/history" variant="plain" className={cx('swift-viewallorder', 'pl-6', 'pr-0', '!py-0')}>

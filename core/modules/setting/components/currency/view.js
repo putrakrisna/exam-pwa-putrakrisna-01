@@ -33,7 +33,7 @@ const ViewSwitcherCurrency = (props) => {
     const PopoverContent = () => {
         if (!isEmptyCookiesCurrency) {
             return (
-                <ul className={cx('currency-list__wrapper')}>
+                <ul className={cx('swift-currency-list__wrapper')}>
                     {currencyState !== null
                         && currencyState.exchange_rates.map((currency_item, index) => {
                             const { currency_to } = currency_item;
@@ -45,6 +45,7 @@ const ViewSwitcherCurrency = (props) => {
                                 // eslint-disable-next-line jsx-a11y/click-events-have-key-events, jsx-a11y/no-noninteractive-element-interactions
                                 <li
                                     key={`currency-${index}`}
+                                    id={`swift-currency-item-${currency_to}`}
                                     className={cx(
                                         'currency-list__item',
                                         'py-2',

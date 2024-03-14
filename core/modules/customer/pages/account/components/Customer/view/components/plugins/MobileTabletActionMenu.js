@@ -53,7 +53,6 @@ const MobileTabletActionMenu = (props) => {
                 setOpen={setOpen}
                 className={cx('top-[120%]', 'p-0', 'right-0')}
                 wrapperClassName={cx('self-end')}
-                wrapperId="top-header__content--currency-language-changer-menu__currency-switcher"
             >
                 <Button
                     onClick={() => setOpen(!open)}

@@ -41,7 +41,7 @@ const Login = (props) => {
         setActiveTabs,
     } = props;
 
-    const tabsData = [{ title: 'Email' }, { title: t('login:Phone') }];
+    const tabsData = [{ title: 'Email', id: 'tab-btn-email' }, { title: t('login:Phone'), id: 'tab-btn-phone' }];
     const breadcrumbsData = [{ label: t('login:login'), link: '#', active: true }];
     const signInOptions = [];
     if (features.firebase.config.apiKey !== '' && firebase && firebase.auth && socialLoginMethodData && socialLoginMethodData.length > 0) {
@@ -126,6 +126,7 @@ const Login = (props) => {
                                 allItems={false}
                                 tabTitleWrapperClassName="grid grid-cols-2"
                                 tabTitleClassName="min-w-full tablet:min-w-full"
+                                tabWrapperClassName="swift-login-tab-wrapper"
                                 onChange={setActiveTabs}
                                 activeTabsProps={activeTabs}
                             />
@@ -146,7 +147,7 @@ const Login = (props) => {
                                             displayHintText: checkIsFieldError(formikPhoneEmail, 'username'),
                                             hintType: checkIsFieldError(formikPhoneEmail, 'username') ? 'error' : '',
                                             hintText: fieldErrorMessage(formikPhoneEmail, 'username'),
-                                            className: 'mt-2',
+                                            className: 'mt-2 swift-login-email-textfield-hint-message',
                                         }}
                                         absolute={false}
                                     />
@@ -159,7 +160,7 @@ const Login = (props) => {
                                             classLabel="capitalize font-medium"
                                             value={formikPhoneEmail.values.password}
                                             onChange={(e) => formikPhoneEmail.setFieldValue('password', e.target.value)}
-                                            hintClassName={cx('!static', 'mt-2')}
+                                            hintClassName={cx('!static', 'mt-2', 'swift-login-password-textfield-hint-message')}
                                             error={checkIsFieldError(formikPhoneEmail, 'password')}
                                             errorMessage={fieldErrorMessage(formikPhoneEmail, 'password')}
                                             showVisible
@@ -204,7 +205,7 @@ const Login = (props) => {
                                             displayHintText: checkIsFieldError(formik, 'username'),
                                             hintType: checkIsFieldError(formik, 'username') ? 'error' : '',
                                             hintText: fieldErrorMessage(formik, 'username'),
-                                            className: 'mt-2',
+                                            className: 'mt-2 swift-login-email-textfield-hint-message',
                                         }}
                                         absolute={false}
                                     />
@@ -217,7 +218,7 @@ const Login = (props) => {
                                             classLabel="capitalize font-medium"
                                             value={formik.values.password}
                                             onChange={(e) => formik.setFieldValue('password', e.target.value)}
-                                            hintClassName={cx('!static', 'mt-2')}
+                                            hintClassName={cx('!static', 'mt-2', 'swift-login-password-textfield-hint-message')}
                                             error={checkIsFieldError(formik, 'password')}
                                             errorMessage={fieldErrorMessage(formik, 'password')}
                                             showVisible
@@ -244,7 +245,7 @@ const Login = (props) => {
                                         </div>
                                     </Show>
 
-                                    <Button className="flex justify-center capitalize" type="submit" disabled={disabled}>
+                                    <Button id="swiftLoginButton" className="flex justify-center capitalize" type="submit" disabled={disabled}>
                                         {t('login:pageTitle')}
                                     </Button>
                                 </form>
@@ -277,7 +278,7 @@ const Login = (props) => {
                                     </div>
                                 </Show>
 
-                                <Button className="flex justify-center capitalize" type="submit" disabled={disabled}>
+                                <Button id="swiftLoginButton" className="flex justify-center capitalize" type="submit" disabled={disabled}>
                                     {t('login:pageTitle')}
                                 </Button>
                             </form>

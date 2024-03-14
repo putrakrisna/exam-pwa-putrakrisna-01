@@ -7,7 +7,7 @@ const PageProgressLoader = () => {
     const [show, setShow] = useState(false);
     let timer = null;
 
-    const wrapperClasses = cx('fixed', 'w-full', 'left-0', 'top-0', 'z-[1100]');
+    const wrapperClasses = cx('swift-pageprogress', 'fixed', 'w-full', 'left-0', 'top-0', 'z-[1100]');
 
     const handleRouteChangeStart = () => {
         setProgress(0);

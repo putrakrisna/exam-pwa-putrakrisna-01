@@ -175,7 +175,11 @@ export default function AutocompleteSearch(props) {
                                 <div className={cx('top-title', 'py-2', 'normal-case', 'font-semibold', 'leading-5', 'text-base')}>Products</div>
                             ) : null}
                             <div
-                                className={cx('grid', 'xs:grid-cols-[48px_1fr]', 'gap-x-2', 'py-2', 'hover:bg-neutral-50', 'hover:cursor-pointer')}
+                                className={cx(
+                                    'swift-autocomplete-product',
+                                    'grid',
+                                    'xs:grid-cols-[48px_1fr]', 'gap-x-2', 'py-2', 'hover:bg-neutral-50', 'hover:cursor-pointer',
+                                )}
                                 key={key}
                                 onClick={() => handleOnClickItem(propsPopoverItem)}
                                 role="presentation"
@@ -199,7 +203,11 @@ export default function AutocompleteSearch(props) {
                     {type === 'category' ? (
                         <>
                             {position === 0 ? (
-                                <div className={cx('top-title', 'py-2', 'normal-case', 'font-semibold', 'leading-5', 'text-base')}>Categories</div>
+                                <div className={cx('swift-autocomplete-category',
+                                    'top-title', 'py-2', 'normal-case', 'font-semibold', 'leading-5', 'text-base')}
+                                >
+                                    Categories
+                                </div>
                             ) : null}
                             <div
                                 className={cx('grid', 'py-2', 'hover:bg-neutral-50', 'hover:cursor-pointer')}
@@ -217,7 +225,11 @@ export default function AutocompleteSearch(props) {
                     {type === 'seller' ? (
                         <>
                             {position === 0 ? (
-                                <div className={cx('top-title', 'py-2', 'normal-case', 'font-semibold', 'leading-5', 'text-base')}>Merchants</div>
+                                <div className={cx('swift-autocomplete-seller',
+                                    'top-title', 'py-2', 'normal-case', 'font-semibold', 'leading-5', 'text-base')}
+                                >
+                                    Merchants
+                                </div>
                             ) : null}
                             <div
                                 className={cx('grid', 'gap-x-2', 'py-2', 'hover:bg-neutral-50', 'hover:cursor-pointer')}
@@ -263,7 +275,9 @@ export default function AutocompleteSearch(props) {
     };
 
     return (
-        <div className={cx('mobile:max-tablet:mt-2', 'mobile:max-tablet:pb-3', 'flex', 'flex-row', 'justify-center')}>
+        <div className={cx('swift-searchautocomplete-wrapper',
+            'mobile:max-tablet:mt-2', 'mobile:max-tablet:pb-3', 'flex', 'flex-row', 'justify-center')}
+        >
             <Popover content={<PopoverContent />} open={isShow} setOpen={setIsShow} {...popoverProps}>
                 <TextField
                     value={searchKeyword}

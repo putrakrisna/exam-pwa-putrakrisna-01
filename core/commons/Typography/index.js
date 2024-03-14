@@ -4,13 +4,14 @@ import cx from 'classnames';
 const Typography = (props) => {
     const {
         variant = 'bd-2a', className = '', children, color, style,
+        ...other
     } = props;
 
     const classes = cx(color || 'text-pwa-font', className);
 
     let propsExtra = {};
     if (style) {
-        propsExtra = { ...propsExtra, style };
+        propsExtra = { ...propsExtra, ...other, style };
     }
 
     if (variant === 'h-xl') {

@@ -160,6 +160,7 @@ const ReviewList = ({
                 onClickCloseTitle={() => {
                     setOpenReviewForm(false);
                 }}
+                classWrapper="swift-product-review-dialog-wrapper"
                 classContainer={
                     cx(
                         isMobile && 'absolute bottom-0 !m-0 p-0',
@@ -185,6 +186,10 @@ const ReviewList = ({
                 positiveProps={{
                     icon: loadingAddReview,
                     loading: loadingAddReview,
+                    id: 'swiftBtnSubmitReviewDialog',
+                }}
+                negativeProps={{
+                    id: 'swiftBtnCancelReviewDialog',
                 }}
                 positiveAction={() => {
                     Formik.handleSubmit();
@@ -218,6 +223,7 @@ const ReviewList = ({
                                 'xs:py-[8px] xs:px-[16px]',
                                 'sm:py-[10px] sm:px-[20px]',
                                 'swift-action-toreview',
+                                'swift-btn-write-review',
                             )}
                         >
                             <Typography variant="bd-2" type="bold" letter="uppercase">

@@ -37,6 +37,7 @@ const Toast = ({
 
     let classNamesText = 'text-green-600';
     let classNamesToast = cx(
+        'swift-toast-success',
         'bg-green-50',
         'border-l-green-600',
         'border-green-600',
@@ -45,6 +46,7 @@ const Toast = ({
     if (variant === 'warning') {
         classNamesText = 'text-yellow-600';
         classNamesToast = cx(
+            'swift-toast-warning',
             'bg-yellow-50',
             'border-l-yellow-600',
             'border-yellow-600',
@@ -54,6 +56,7 @@ const Toast = ({
     if (variant === 'error') {
         classNamesText = 'text-red-600';
         classNamesToast = cx(
+            'swift-toast-error',
             'bg-red-50',
             'border-l-red-600',
             'border-red-600',

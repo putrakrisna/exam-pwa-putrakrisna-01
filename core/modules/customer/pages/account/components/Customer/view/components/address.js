@@ -7,8 +7,8 @@ import Button from '@common_button';
 import Typography from '@common_typography';
 
 const generateData = (data, { t }) => (
-    <p className={cx('pt-5')}>
-        <Typography className={cx('block', 'font-normal')}>
+    <p className={cx('pt-5', 'swift-customer-account-address-wrapper')}>
+        <Typography className={cx('block', 'font-normal', 'swift-customer-cccount-addresslabel')}>
             {data.firstname} {data.lastname}
         </Typography>
         <Typography className={cx('block', 'font-normal', 'pt-3')}>{data.city.split(', ')[0]}</Typography>

@@ -96,7 +96,7 @@ const ModalResult = (props) => {
         }
 
         return (
-            <div className="'w-full flex flex-col desktop:flex-row-reverse gap-2 !bg-[transparent]',">
+            <div className="swift-trackingorder-view-wrapper w-full flex flex-col desktop:flex-row-reverse gap-2 !bg-[transparent]">
                 <div className="w-full desktop:w-auto flex justify-end">
                     <div
                         role="presentation"

@@ -6,8 +6,12 @@ import Button from '@common_button';
 import Typography from '@common_typography';
 
 const AddressView = ({ customer, t }) => (
-    <div className={cx('')}>
-        <Typography variant="h3" className={cx('pl-0', 'pb-[18px]', 'mb-[18px]', 'border-b-[1.5px]', 'border-neutral-200')}>
+    <div className={cx('swift-customer-account-information-wrapper')}>
+        <Typography
+            id="swiftCustomerAccountInformationLabel"
+            variant="h3"
+            className={cx('pl-0', 'pb-[18px]', 'mb-[18px]', 'border-b-[1.5px]', 'border-neutral-200')}
+        >
             {t('customer:menu:accountInformation')}
         </Typography>
         <div className={cx('flex', 'mobile:flex-col', 'desktop:flex-row', 'mobile:max-desktop:gap-y-4', 'desktop:gap-x-5')}>
@@ -27,7 +31,7 @@ const AddressView = ({ customer, t }) => (
                             </Button>
                         </div>
                         <div className={cx('account-action-btn')}>
-                            <Button link="/customer/account/profile" variant="plain" className={cx('swift-changeaccountinfo', 'pl-6', '!py-0')}>
+                            <Button link="/customer/account/profile" variant="plain" className={cx('swift-changeaaccountpassword', 'pl-6', '!py-0')}>
                                 <Typography variant="bd-2a" className={cx('!text-primary-700')}>
                                     {t('customer:newPassword:title')}
                                 </Typography>

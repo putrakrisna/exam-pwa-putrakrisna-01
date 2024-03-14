@@ -9,7 +9,7 @@ const ReviewCardForm = ({ t, Formik }) => (
         <TextField
             required
             absolute={false}
-            className="w-full"
+            className="w-full swift-review-form-nickname"
             onChange={Formik.handleChange}
             value={Formik.values.nickname}
             placeholder={t('product:nickname')}
@@ -19,7 +19,7 @@ const ReviewCardForm = ({ t, Formik }) => (
                 placeholder: t('common:label:egJohnDoe'),
             }}
             hintProps={{
-                className: 'mt-[6px]',
+                className: 'mt-[6px] swift-review-form-nickname-hint',
                 displayHintText: !!(Formik.touched.nickname && Formik.errors.nickname),
                 hintType: Formik.touched.nickname && Formik.errors.nickname ? 'error' : '',
                 hintText: (Formik.touched.nickname && Formik.errors.nickname) || null,
@@ -32,13 +32,13 @@ const ReviewCardForm = ({ t, Formik }) => (
             </Typography>
             <RatingStar
                 value={Formik.values.rating}
-                classContainer={cx('mb-[6px]')}
+                classContainer={cx('mb-[6px] swift-review-form-ratingstart')}
                 onChange={(newValue) => {
                     Formik.setFieldValue('rating', newValue);
                 }}
             />
             {Formik.touched.rating && Formik.errors.rating && (
-                <Typography variant="bd-2b" color="!text-red">
+                <Typography className="swift-review-form-ratingstart-hint" variant="bd-2b" color="!text-red">
                     {Formik.touched.rating && Formik.errors.rating ? Formik.errors.rating : ''}
                 </Typography>
             )}
@@ -46,7 +46,7 @@ const ReviewCardForm = ({ t, Formik }) => (
         <TextField
             required
             absolute={false}
-            className="w-full"
+            className="w-full swift-review-form-reviewtitle"
             classWrapper="mt-[24px]"
             onChange={Formik.handleChange}
             value={Formik.values.title}
@@ -56,7 +56,7 @@ const ReviewCardForm = ({ t, Formik }) => (
                 placeholder: t('common:label:addReviewTitle'),
             }}
             hintProps={{
-                className: 'mt-[6px]',
+                className: 'mt-[6px] swift-review-form-reviewtitle-hint',
                 displayHintText: !!(Formik.touched.title && Formik.errors.title),
                 hintType: Formik.touched.title && Formik.errors.title ? 'error' : '',
                 hintText: (Formik.touched.title && Formik.errors.title) || null,
@@ -67,7 +67,7 @@ const ReviewCardForm = ({ t, Formik }) => (
             multiline
             absolute={false}
             name="detail"
-            className="w-full"
+            className="w-fullswift-review-form-detail"
             classWrapper="mt-[24px]"
             onChange={Formik.handleChange}
             value={Formik.values.detail}
@@ -79,7 +79,7 @@ const ReviewCardForm = ({ t, Formik }) => (
                 placeholder: t('common:label:addReview'),
             }}
             hintProps={{
-                className: 'mt-[6px]',
+                className: 'mt-[6px]swift-review-form-detail-hint',
                 displayHintText: !!(Formik.touched.detail && Formik.errors.detail) || true,
                 hintType: Formik.touched.detail && Formik.errors.detail ? 'error' : 'info',
                 hintText:

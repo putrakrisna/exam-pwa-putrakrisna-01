@@ -82,6 +82,7 @@ const Tabs = (props) => {
                                             tabTitleListWrapperClassName,
                                         )}
                                         key={index}
+                                        id={item.id || `tab-${index}`}
                                     >
                                         <a
                                             className={cx(

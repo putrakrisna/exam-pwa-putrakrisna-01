@@ -37,9 +37,12 @@ const AddressView = (props) => {
         responRegion,
         responCities,
         getCities,
+        identifier = '',
     } = props;
     const addBtn = success ? cx('bg-green-500', 'hover:bg-green-500', 'py-8') : cx('py-8');
     const inputHintClasses = cx('z-10', '!static', 'mt-2');
+
+    const formIdentifier = identifier || 'swift-plugin-form-address';
 
     const [isDesktop, setIsDekstop] = React.useState(false);
 
@@ -57,7 +60,7 @@ const AddressView = (props) => {
         <Autocomplete
             useKey
             openOnFocus
-            className={cx('addressForm-country-autoComplete')}
+            className={cx(`${formIdentifier}-country-autoComplete`)}
             inputClassName={cx('w-full')}
             popoverWrapperClassName={cx('w-full', 'flex', 'flex-col')}
             popoverContentClassName={cx('px-4', 'text-base', 'text-neutral-800', 'hover:text-neutral-500', 'max-h-[30vh]', '!px-2')}
@@ -99,7 +102,7 @@ const AddressView = (props) => {
                     useKey
                     openOnFocus
                     id="controlled-region"
-                    className="addressForm-province-autoComplete"
+                    className={`${formIdentifier}-province-autoComplete`}
                     inputClassName={cx('w-full')}
                     popoverWrapperClassName={cx('w-full', 'flex', 'flex-col')}
                     popoverContentClassName={cx('px-4', 'text-base', 'text-neutral-800', 'hover:text-neutral-500', 'max-h-[30vh]', '!px-2')}
@@ -142,7 +145,7 @@ const AddressView = (props) => {
         return (
             <TextField
                 disabled={!formik.values.country}
-                className={cx('w-full')}
+                className={cx('w-full', `${formIdentifier}-region-textField`)}
                 autoComplete="new-password"
                 label={t('common:form:region')}
                 name="region"
@@ -173,7 +176,7 @@ const AddressView = (props) => {
                     openOnFocus
                     id="controlled-city"
                     disabled={formik.values.region.region_id === 'ID' ? !formik.values.region && !responCities : !formik.values.region}
-                    className="addressForm-city-autoComplete"
+                    className={`${formIdentifier}-city-autoComplete`}
                     inputClassName={cx('w-full')}
                     popoverWrapperClassName={cx('w-full', 'flex', 'flex-col')}
                     popoverContentClassName={cx('px-4', 'text-base', 'text-neutral-800', 'hover:text-neutral-500', 'max-h-[30vh]', '!px-2')}
@@ -205,7 +208,7 @@ const AddressView = (props) => {
         return (
             <TextField
                 disabled={formik.values.region.region_id === 'ID' ? !formik.values.region && !responCities : !formik.values.region}
-                className={cx('w-full')}
+                className={cx('w-full', `${formIdentifier}-city-textField`)}
                 autoComplete="new-password"
                 label="City"
                 name="city"
@@ -234,7 +237,7 @@ const AddressView = (props) => {
                     useKey
                     openOnFocus
                     id="controlled-district"
-                    className="addressForm-district-autoComplete"
+                    className={`${formIdentifier}-district-autoComplete`}
                     inputClassName={cx('w-full')}
                     popoverWrapperClassName={cx('w-full', 'flex', 'flex-col')}
                     popoverContentClassName={cx('px-4', 'text-base', 'text-neutral-800', 'hover:text-neutral-500', 'max-h-[30vh]', '!px-2')}
@@ -266,7 +269,7 @@ const AddressView = (props) => {
         return (
             <TextField
                 disabled={!formik.values.city}
-                className={cx('w-full')}
+                className={cx('w-full', `${formIdentifier}-district-textField`)}
                 autoComplete="new-password"
                 label="Kecamatan"
                 name="district"
@@ -293,7 +296,7 @@ const AddressView = (props) => {
                     useKey
                     openOnFocus
                     id="controlled-village"
-                    className="addressForm-village-autoComplete"
+                    className={`${formIdentifier}-village-autoComplete`}
                     inputClassName={cx('w-full')}
                     popoverWrapperClassName={cx('w-full', 'flex', 'flex-col')}
                     popoverContentClassName={cx('px-4', 'text-base', 'text-neutral-800', 'hover:text-neutral-500', 'max-h-[30vh]', '!px-2')}
@@ -333,11 +336,17 @@ const AddressView = (props) => {
             onClickCloseTitle={() => setOpen(false)}
             classContent={cx('mobile:max-tablet:max-h-[80vh]', 'mobile:max-tablet:overflow-y-scroll', 'rounded-b-[12px]')}
             content={
-                <div className={cx('tablet:max-w-[960px]', 'w-full', 'self-center')} id="formAddress">
+                <div
+                    className={cx(
+                        'tablet:max-w-[960px]',
+                        'w-full', 'self-center',
+                    )}
+                    id={formIdentifier}
+                >
                     <div className={cx('overflow-y-auto', 'tablet:h-[80vh]')}>
                         <form onSubmit={formik.handleSubmit} autoComplete="new-password" className={cx('flex', 'flex-col', 'gap-y-6', 'tablet:pr-4')}>
                             <TextField
-                                id="addressForm-firtsName-textField"
+                                id={`${formIdentifier}-firtsName-textField`}
                                 className={cx('w-full')}
                                 autoComplete="new-password"
                                 label={t('common:form:firstName')}
@@ -352,7 +361,7 @@ const AddressView = (props) => {
                                 }}
                             />
                             <TextField
-                                id="addressForm-lastName-textField"
+                                id={`${formIdentifier}-lastName-textField`}
                                 className={cx('w-full')}
                                 autoComplete="new-password"
                                 label={t('common:form:lastName')}
@@ -367,7 +376,7 @@ const AddressView = (props) => {
                                 }}
                             />
                             <TextField
-                                id="addressForm-phoneNumber-textField"
+                                id={`${formIdentifier}-phoneNumber-textField`}
                                 className={cx('w-full')}
                                 autoComplete="new-password"
                                 label={t('common:form:phoneNumber')}
@@ -387,7 +396,7 @@ const AddressView = (props) => {
                             {enableSplitCity && formik.values.city ? getDistrictRender() : null}
                             {enableSplitCity && formik.values.district ? getVillageRender() : null}
                             <TextField
-                                id="addressForm-postalCode-textField"
+                                id={`${formIdentifier}-postalCode-textField`}
                                 className={cx('w-full')}
                                 autoComplete="new-password"
                                 label={t('common:form:postal')}
@@ -428,7 +437,7 @@ const AddressView = (props) => {
                                 </div>
                             ) : (
                                 <TextField
-                                    id="addressForm-addressDetail-textField"
+                                    id={`${formIdentifier}-addressDetail-textField`}
                                     className={cx('w-full')}
                                     autoComplete="new-password"
                                     label={t('common:form:addressDetail')}
@@ -458,7 +467,7 @@ const AddressView = (props) => {
                             {disableDefaultAddress != null && (
                                 <div className={cx('-mt-2')}>
                                     <Checkbox
-                                        id={`addressform-defaultshippingbilling-checkbox-${addressId || 'new'}`}
+                                        id={`${formIdentifier}-defaultshippingbilling-checkbox-${addressId || 'new'}`}
                                         variant="single"
                                         label={t('customer:address:confirmPinPoint')}
                                         checked={formik.values.defaultShippingBilling}
@@ -469,7 +478,7 @@ const AddressView = (props) => {
                                             checkboxClasses: cx('cursor-pointer', 'min-w-5', 'focus:shadow-none'),
                                         }}
                                     >
-                                        <label className="mt-[-2px]" htmlFor={`addressform-defaultshippingbilling-checkbox-${addressId || 'new'}`}>
+                                        <label className="mt-[-2px]" htmlFor={`${formIdentifier}-defaultshippingbilling-checkbox-${addressId || 'new'}`}>
                                             <Typography>{t('customer:address:useDefault')}</Typography>
                                         </label>
                                     </Checkbox>
@@ -479,7 +488,7 @@ const AddressView = (props) => {
                             {gmapKey ? (
                                 <div className={cx('-mt-2')}>
                                     <Checkbox
-                                        id={`addressform-confirmpinpoint-checkbox-${addressId || 'new'}`}
+                                        id={`${formIdentifier}-confirmpinpoint-checkbox-${addressId || 'new'}`}
                                         variant="single"
                                         label={t('customer:address:confirmPinPoint')}
                                         checked={formik.values.confirmPinPoint}
@@ -490,7 +499,7 @@ const AddressView = (props) => {
                                             checkboxClasses: cx('cursor-pointer', 'min-w-5', 'focus:shadow-none'),
                                         }}
                                     >
-                                        <label className="mt-[-2px]" htmlFor={`addressform-confirmpinpoint-checkbox-${addressId || 'new'}`}>
+                                        <label className="mt-[-2px]" htmlFor={`${formIdentifier}-confirmpinpoint-checkbox-${addressId || 'new'}`}>
                                             <Typography>{`${t('customer:address:confirmPinPoint')}`}</Typography>
                                         </label>
                                     </Checkbox>
@@ -507,7 +516,7 @@ const AddressView = (props) => {
                             )}
                             <div className={cx('p-4', 'relative', 'text-center')}>
                                 <Button
-                                    className={cx(addBtn, 'swift-addressForm-saveAddress-btn', 'w-full')}
+                                    className={cx(addBtn, `${formIdentifier}-saveAddress-btn`, 'w-full')}
                                     classNameText={cx('text-center', 'justify-center')}
                                     type="submit"
                                     disabled={loading}

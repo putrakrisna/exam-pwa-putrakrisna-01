@@ -29,6 +29,7 @@ const QuickView = (props) => {
                     <div className="w-full desktop:w-auto flex justify-end">
                         <div
                             role="presentation"
+                            id="swiftButtonCloseQuickViewDialog"
                             onClick={handleClose}
                             className={cx(
                                 'w-7 h-7 p-1 rounded-md justify-center items-center gap-1.5 inline-flex group',

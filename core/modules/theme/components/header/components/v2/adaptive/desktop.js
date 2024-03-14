@@ -98,31 +98,56 @@ const DesktopHeader = (props) => {
     const PopoverContent = () => {
         return (
             <ul className={cx('my-account-list__wrapper')}>
-                <li key={0} className={cx('my-account-list__item', 'py-2', 'px-2', 'text-left')}>
+                <li key={0} className={cx('my-account-list__item swift-account-list-profile', 'py-2', 'px-2', 'text-left')}>
                     <Typography className={cx('currency-list__text', '!text-primary-700')}>
                         Hi,
                         {' '}
                         {customer?.firstname}
                     </Typography>
                 </li>
-                <li key={0} className={cx('my-account-list__item', 'py-2', 'px-2', 'text-left', 'hover:cursor-pointer', 'hover:bg-neutral-100')}>
+                <li
+                    key={0}
+                    className={cx(
+                    'my-account-list__item swift-account-list-account', 'py-2', 'px-2', 'text-left', 'hover:cursor-pointer', 'hover:bg-neutral-100',
+)}
+                >
                     <Link href="/customer/account">
                         <Typography className={cx('currency-list__text', 'text-neutral-700')}>My Account</Typography>
                     </Link>
                 </li>
-                <li key={1} className={cx('my-account-list__item', 'py-2', 'px-2', 'text-left', 'hover:cursor-pointer', 'hover:bg-neutral-100')}>
+                <li
+                    key={1}
+                    className={cx(
+                        'my-account-list__item swift-account-list-wishlist',
+                        'py-2', 'px-2', 'text-left', 'hover:cursor-pointer',
+                        'hover:bg-neutral-100',
+                    )}
+                >
                     <Link href="/wishlist">
                         <Typography className={cx('currency-list__text', 'text-neutral-700')}>My Wish List</Typography>
                     </Link>
                 </li>
-                <li key={2} className={cx('my-account-list__item', 'py-2', 'px-2', 'text-left', 'hover:cursor-pointer', 'hover:bg-neutral-100')}>
+                <li
+                    key={2}
+                    className={cx(
+                        'my-account-list__item swift-account-list-productcompare',
+                        'py-2', 'px-2', 'text-left', 'hover:cursor-pointer',
+                        'hover:bg-neutral-100',
+                    )}
+                >
                     <Link href="/catalog/product_compare">
                         <Typography className={cx('currency-list__text', 'text-neutral-700')}>Compare Products</Typography>
                     </Link>
                 </li>
                 <li
                     key={3}
-                    className={cx('my-account-list__item', 'py-2', 'px-2', 'text-left', 'hover:cursor-pointer', 'hover:bg-neutral-100')}
+                    className={
+                        cx(
+                            'my-account-list__item swift-account-list-btn-logout',
+                            'py-2', 'px-2', 'text-left', 'hover:cursor-pointer',
+                            'hover:bg-neutral-100',
+                        )
+                    }
                     onClick={() => handleLogout()}
                 >
                     <Typography className={cx('currency-list__text', 'text-primary-700')}>Log Out</Typography>

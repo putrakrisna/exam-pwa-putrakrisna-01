@@ -54,7 +54,7 @@ const ViewThanksMultiSeller = (props) => {
                                         {item.seller_name ? `${item.seller_name}` : 'Default Seller'}
                                         {item.seller_city ? ` - ${item.seller_city}` : ' - Default City'}
                                     </td>
-                                    <td align="right" className="py-2 hidden desktop:table-cell">
+                                    <td align="right" className="py-2 hidden desktop:table-cell swift-thanks-order-number">
                                         {isLogin && isLogin == 1 ? (
                                             (
                                                 <Link href={`/sales/order/view/order_id/${item?.order_number}`} passhref>

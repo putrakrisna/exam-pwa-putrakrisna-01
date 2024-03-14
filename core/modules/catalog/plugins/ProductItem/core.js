@@ -555,6 +555,7 @@ const ProductItem = (props) => {
                         'tablet:max-w-[230px] desktop:min-w-[288px] desktop:max-w-full',
                         'flex flex-col swift-catalog-item-product',
                         className,
+                        'swift-product-card-wrapper',
                     )}
                 >
                     <div className="w-full relative group overflow-hidden">
@@ -579,7 +580,7 @@ const ProductItem = (props) => {
                                         'desktop:group-hover:visible',
                                         'absolute px-3 py-2',
                                         'left-1/2 bottom-4 -translate-x-1/2 z-[2] w-32',
-                                        'swift-quickview-button',
+                                        'swift-btn-quickview-product-card',
                                     )}
                                     size="sm"
                                 >
@@ -694,6 +695,7 @@ const ProductItem = (props) => {
                     'shadow  border border-neutral-100 rounded-lg p-2 tablet:p-4',
                     'h-full min-h-[136px] tablet:min-h-max',
                     'desktop:hover:shadow-lg',
+                    'swift-product-card-wrapper',
                     className,
                 )}
             >
@@ -726,6 +728,7 @@ const ProductItem = (props) => {
                                         'desktop:group-hover:visible',
                                         'absolute px-3 py-2',
                                         'desktop:left-2 desktop:bottom-2 z-[2] desktop:w-32',
+                                        'swift-btn-quickview-product-card',
                                     )}
                                     size="sm"
                                 >
