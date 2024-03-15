@@ -39,7 +39,7 @@ const Menu = (props) => {
         const firstMenu = menu.filter((item, key) => key < 8);
         const otherChildren = menu.filter((item, key) => key >= 8);
         const othersMenu = {
-            uid: `NavOther-${Math.random(1000)}`,
+            uid: `NavOther-${Date.now()}`,
             name: t('common:menu:others'),
             level: 2,
             path: '#',
