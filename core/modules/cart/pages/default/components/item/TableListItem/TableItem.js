@@ -16,8 +16,8 @@ const TableItem = (props) => {
     const {
         customizable_options, SimpleMiniCustomizable, ConfigurableMiniCustomizable,
         product, storeConfig, custom_price, configurable_options, links, bundle_options,
-        currencyCache, quantity, updateItem, id, confirmDelete, isMultiSeller, t, note,
-        aw_giftcard_option,
+        currencyCache, quantity, updateItem, id, isMultiSeller, t, note,
+        aw_giftcard_option, handleOpenDelete,
     } = props;
 
     const cartCustomOptions = SimpleMiniCustomizable || ConfigurableMiniCustomizable || customizable_options;
@@ -187,7 +187,12 @@ const TableItem = (props) => {
                         iconPosition="right"
                         icon={<TrashIcon />}
                         variant="plain"
-                        onClick={() => confirmDelete(props)}
+                        onClick={() => handleOpenDelete({
+                            id,
+                            product,
+                            quantity,
+                            prices: custom_price,
+                        })}
                     />
                 </div>
             </td>

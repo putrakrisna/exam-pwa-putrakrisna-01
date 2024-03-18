@@ -11,34 +11,12 @@
 // import Button from '@common_button';
 // import TextField from '@common_forms/TextField';
 import Typography from '@common_typography';
-import ConfirmationDelete from '@core_modules/cart/pages/default/components/confirmDelete';
 import React from 'react';
 import Show from '@common/Show';
 import TableItem from '@core_modules/cart/pages/default/components/item/TableListItem/TableItem';
 import Link from 'next/link';
 
 const TableListProduct = ({ dataCart, t, deleteItem, handleFeed, toggleEditDrawer, storeConfig = {}, currencyCache, ...other }) => {
-    const [confirmDel, setConfirmDel] = React.useState(false);
-    const [selectDelete, setSelectDelet] = React.useState(null);
-    const confirmDelete = (item) => {
-        setConfirmDel(true);
-        setSelectDelet(item);
-    };
-    const handleDelete = () => {
-        setConfirmDel(false);
-        deleteItem({
-            id: selectDelete.id,
-            product: selectDelete.product,
-            quantity: selectDelete.quantity,
-            prices: selectDelete.custom_price,
-        });
-    };
-
-    const cancelDelete = () => {
-        setConfirmDel(false);
-        setSelectDelet(null);
-    };
-
     const { items: data } = dataCart;
 
     let defaultWidth = storeConfig?.pwa?.image_product_width;
@@ -82,7 +60,6 @@ const TableListProduct = ({ dataCart, t, deleteItem, handleFeed, toggleEditDrawe
 
     return (
         <>
-            <ConfirmationDelete t={t} open={confirmDel} handleDelete={handleDelete} handleCancel={cancelDelete} />
             <table className="table-auto">
                 <thead>
                     <tr className="border-b-[1px] border-b-neutral-200">
@@ -107,7 +84,6 @@ const TableListProduct = ({ dataCart, t, deleteItem, handleFeed, toggleEditDrawe
                                         {...val}
                                         storeConfig={storeConfig}
                                         currencyCache={currencyCache}
-                                        confirmDelete={confirmDelete}
                                         t={t}
                                         {...other}
                                     />
@@ -134,7 +110,6 @@ const TableListProduct = ({ dataCart, t, deleteItem, handleFeed, toggleEditDrawe
                                             {...val}
                                             storeConfig={storeConfig}
                                             currencyCache={currencyCache}
-                                            confirmDelete={confirmDelete}
                                             t={t}
                                             {...other}
                                         />

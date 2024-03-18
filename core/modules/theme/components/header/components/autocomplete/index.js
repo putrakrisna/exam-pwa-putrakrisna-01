@@ -264,7 +264,7 @@ export default function AutocompleteSearch(props) {
         };
 
         return (
-            <div className={cx('px-4')}>
+            <div className={cx('px-4', 'swift-searchautocomplete-result-wrapper')}>
                 {isShow && searchKeyword.length !== 0 && (item === null || (typeof item === 'object' && item.length === 0)) ? (
                     <div className={cx('breadcrumbs', 'block', 'text-sm', 'text-neutral-500', 'uppercase', 'py-4')}>{t('common:error:notFound')}</div>
                 ) : (

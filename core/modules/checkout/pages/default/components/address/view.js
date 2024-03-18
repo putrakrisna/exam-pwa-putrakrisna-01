@@ -97,6 +97,7 @@ const AddressView = (props) => {
                         pageTitle={t('checkout:address:addTitle')}
                         {...other}
                         {...dialogProps}
+                        identifier="swift-form-address-guest"
                     />
                     {loading.addresses || loading.all ? null : (
                         <Button

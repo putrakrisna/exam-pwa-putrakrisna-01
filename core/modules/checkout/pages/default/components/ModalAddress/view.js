@@ -70,6 +70,7 @@ const AddressView = (props) => {
                 setOpen={() => handleOpenNew(typeAddress)}
                 pageTitle={typeAddress === 'new' ? t('customer:address:addTitle') : t('customer:address:editTitle')}
                 {...dataEdit}
+                identifier="swift-form-address-customer"
             />
             <Dialog
                 open={open}

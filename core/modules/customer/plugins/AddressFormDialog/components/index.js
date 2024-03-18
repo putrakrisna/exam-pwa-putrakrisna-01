@@ -40,7 +40,7 @@ const AddressView = (props) => {
         identifier = '',
     } = props;
     const addBtn = success ? cx('bg-green-500', 'hover:bg-green-500', 'py-8') : cx('py-8');
-    const inputHintClasses = cx('z-10', '!static', 'mt-2');
+    const inputHintClasses = 'z-10 !static mt-2';
 
     const formIdentifier = identifier || 'swift-plugin-form-address';
 
@@ -132,7 +132,7 @@ const AddressView = (props) => {
                     }}
                     inputProps={{
                         hintProps: {
-                            className: inputHintClasses,
+                            className: cx(inputHintClasses, `${formIdentifier}-province-autoComplete-hint`),
                             displayHintText: !!(formik.touched.region && formik.errors.region),
                             hintType: 'error',
                             hintText: formik.touched.region && formik.errors.region ? formik.errors.region : '',
@@ -158,7 +158,7 @@ const AddressView = (props) => {
                     formik.setFieldValue('postcode', '');
                 }}
                 hintProps={{
-                    className: inputHintClasses,
+                    className: cx(inputHintClasses, `${formIdentifier}-region-textField-hint`),
                     displayHintText: !!(formik.touched.region && formik.errors.region),
                     hintType: 'error',
                     hintText: formik.touched.region && formik.errors.region ? formik.errors.region : '',
@@ -195,7 +195,7 @@ const AddressView = (props) => {
                     }}
                     inputProps={{
                         hintProps: {
-                            className: inputHintClasses,
+                            className: cx(inputHintClasses, `${formIdentifier}-city-autoComplete-hint`),
                             displayHintText: !!(formik.touched.city && formik.errors.city),
                             hintType: 'error',
                             hintText: formik.touched.city && formik.errors.city ? formik.errors.city : '',
@@ -220,7 +220,7 @@ const AddressView = (props) => {
                     formik.setFieldValue('postcode', '');
                 }}
                 hintProps={{
-                    className: inputHintClasses,
+                    className: cx(inputHintClasses, `${formIdentifier}-city-textField-hint`),
                     displayHintText: !!(formik.touched.city && formik.errors.city),
                     hintType: 'error',
                     hintText: formik.touched.city && formik.errors.city ? formik.errors.city : '',
@@ -256,7 +256,7 @@ const AddressView = (props) => {
                     }}
                     inputProps={{
                         hintProps: {
-                            className: inputHintClasses,
+                            className: cx(inputHintClasses, `${formIdentifier}-district-autoComplete-hint`),
                             displayHintText: !!(formik.touched.district && formik.errors.district),
                             hintType: 'error',
                             hintText: formik.touched.district && formik.errors.district ? formik.errors.district : '',
@@ -280,7 +280,7 @@ const AddressView = (props) => {
                     formik.setFieldValue('postcode', '');
                 }}
                 hintProps={{
-                    className: inputHintClasses,
+                    className: cx(inputHintClasses, `${formIdentifier}-district-textField-hint`),
                     displayHintText: !!(formik.touched.district && formik.errors.district),
                     hintType: 'error',
                     hintText: formik.touched.district && formik.errors.district ? formik.errors.district : '',
@@ -314,7 +314,7 @@ const AddressView = (props) => {
                     }}
                     inputProps={{
                         hintProps: {
-                            className: inputHintClasses,
+                            className: cx(inputHintClasses, `${formIdentifier}-village-autoComplete-hint`),
                             displayHintText: !!(formik.touched.village && formik.errors.village),
                             hintType: 'error',
                             hintText: formik.touched.village && formik.errors.village ? formik.errors.village : '',
@@ -354,7 +354,7 @@ const AddressView = (props) => {
                                 value={formik.values.firstname}
                                 onChange={formik.handleChange}
                                 hintProps={{
-                                    className: inputHintClasses,
+                                    className: cx(inputHintClasses, `${formIdentifier}-firtsName-textField-hint`),
                                     displayHintText: !!(formik.touched.firstname && formik.errors.firstname),
                                     hintType: 'error',
                                     hintText: formik.touched.firstname && formik.errors.firstname ? formik.errors.firstname : '',
@@ -369,7 +369,7 @@ const AddressView = (props) => {
                                 value={formik.values.lastname}
                                 onChange={formik.handleChange}
                                 hintProps={{
-                                    className: inputHintClasses,
+                                    className: cx(inputHintClasses, `${formIdentifier}-lastName-textField-hint`),
                                     displayHintText: !!(formik.touched.lastname && formik.errors.lastname),
                                     hintType: 'error',
                                     hintText: formik.touched.lastname && formik.errors.lastname ? formik.errors.lastname : '',
@@ -384,7 +384,7 @@ const AddressView = (props) => {
                                 value={formik.values.telephone}
                                 onChange={formik.handleChange}
                                 hintProps={{
-                                    className: inputHintClasses,
+                                    className: cx(inputHintClasses, `${formIdentifier}-phoneNumber-textField-hint`),
                                     displayHintText: !!(formik.touched.telephone && formik.errors.telephone),
                                     hintType: 'error',
                                     hintText: formik.touched.telephone && formik.errors.telephone ? formik.errors.telephone : '',
@@ -414,7 +414,7 @@ const AddressView = (props) => {
                                     e.target.setAttribute('role', 'combobox');
                                 }}
                                 hintProps={{
-                                    className: inputHintClasses,
+                                    className: cx(inputHintClasses, `${formIdentifier}-postalCode-textField-hint`),
                                     displayHintText: !!(formik.touched.postcode && formik.errors.postcode),
                                     hintType: 'error',
                                     hintText: formik.touched.postcode && formik.errors.postcode ? formik.errors.postcode : '',
@@ -456,7 +456,7 @@ const AddressView = (props) => {
                                         e.target.setAttribute('role', 'combobox');
                                     }}
                                     hintProps={{
-                                        className: inputHintClasses,
+                                        className: cx(inputHintClasses, `${formIdentifier}-addressDetail-textField-hint`),
                                         displayHintText: !!(formik.touched.addressDetail && formik.errors.addressDetail),
                                         hintType: 'error',
                                         hintText: formik.touched.addressDetail && formik.errors.addressDetail ? formik.errors.addressDetail : '',
