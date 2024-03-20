@@ -1,5 +1,12 @@
+import { general } from '@config';
+
 const getLowestTierPrice = (tier_price) => {
-    let lowestTierPrice;
+    let lowestTierPrice = {
+        final_price: {
+            value: 0,
+            currency: general.defaultCurrencyCode,
+        },
+    };
     let min = Number.POSITIVE_INFINITY;
     tier_price.forEach((price) => {
         if (price.final_price.value < min) {

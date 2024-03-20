@@ -175,13 +175,9 @@ const BannerThumbnail = ({
                     showArrow ? (
                         <>
                             <div
-                                className={thumbnail
-                                    ? classNames(
-                                        arrow, 'left-[20px]',
-                                    )
-                                    : classNames(
-                                        arrow, 'left-[20px]',
-                                    )}
+                                className={classNames(
+                                    arrow, 'left-[20px]',
+                                )}
                                 onClick={handleLeftArrow}
                             >
                                 <i class="fas fa-chevron-left" />

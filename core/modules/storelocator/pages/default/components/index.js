@@ -20,10 +20,12 @@ const StoreLocatorContent = ({ gmapKey, storeLocations, t }) => {
     React.useEffect(() => {
         if (storeList !== null) {
             if (navigator && navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    const lng = position.coords.longitude;
-                    const lat = position.coords.latitude;
-                    setCenterPosition({ lat, lng });
+                navigator.permissions.query({ name: 'geolocation' }).then(() => {
+                    navigator.geolocation.getCurrentPosition((position) => {
+                        const lng = position.coords.longitude;
+                        const lat = position.coords.latitude;
+                        setCenterPosition({ lat, lng });
+                    });
                 });
             } else {
                 setCenterPosition({ lat: -6.17539, lng: 106.82715 });

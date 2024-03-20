@@ -63,9 +63,7 @@ const HeaderV2 = (props) => {
                         topHeaderheight = isDesktop
                             ? document.querySelector('.desktop-header .top-header')?.offsetHeight || 0
                             : document.querySelector('#top-header-tablet')?.offsetHeight || 0;
-                        midHeaderheight = isDesktop
-                            ? document.querySelector('.desktop-header .middle-header')?.offsetHeight
-                            : document.querySelector('.desktop-header .middle-header')?.offsetHeight;
+                        midHeaderheight = document.querySelector('.desktop-header .middle-header')?.offsetHeight;
                         bottomHeaderheight = isDesktop ? document.querySelector('.desktop-header .bottom-header')?.offsetHeight || 0 : 0;
 
                         if (scrollTopPosition > lastScrollTop) {

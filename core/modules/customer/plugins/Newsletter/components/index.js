@@ -8,7 +8,9 @@ import cx from 'classnames';
 
 const NewsletterView = (props) => {
     // base props
-    const { formik, loading, t, type, storeConfig, ...others } = props;
+    const {
+        formik, loading, t, type, storeConfig, ...others
+    } = props;
 
     // magezon newsletter props
     const {
@@ -171,7 +173,7 @@ const NewsletterView = (props) => {
                     }
                     .block-newsletter {
                         margin: 0 auto;
-                        max-width: ${layout_type === 'box' ? '100%' : '100%'};
+                        max-width: 100%;
                     }
                     .form.subscribe {
                         flex-direction: ${layout_type === 'box' ? 'column' : 'row'};

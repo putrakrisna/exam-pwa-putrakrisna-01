@@ -279,7 +279,7 @@ const PaypalButton = (props) => {
                     TagManager.dataLayer({ dataLayer: dataLayerOption });
                     TagManager.dataLayer({ dataLayer: dataLayerOpt });
                 } else {
-                    onErrorPaypal('error');
+                    onErrorPaypal();
                 }
 
                 // set local data

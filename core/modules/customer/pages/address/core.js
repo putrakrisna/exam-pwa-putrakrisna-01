@@ -80,7 +80,7 @@ const AddressCustomer = (props) => {
         }
 
         if (navigator.geolocation) {
-            return navigator.geolocation.getCurrentPosition(displayLocationInfo);
+            navigator.permissions.query({ name: 'geolocation' }).then(() => navigator.geolocation.getCurrentPosition(displayLocationInfo));
         }
     }, [dataAddress]);
 

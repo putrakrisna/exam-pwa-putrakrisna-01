@@ -19,8 +19,9 @@ const ImageWithAction = ({
 }) => {
     const { openLightbox } = useLightbox();
     const handleClick = () => {
-        // eslint-disable-next-line no-unused-expressions
-        onClick ? onClick() : null;
+        if (typeof onClick === 'function') {
+            onClick();
+        }
         if (withPopup) {
             setTimeout(() => {
                 openLightbox(position - 1);

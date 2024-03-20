@@ -242,7 +242,7 @@ const ChatPluginCore = (props) => {
 
     const handleAutoTextSubmit = (ans) => {
         const messageText = ans.message;
-        const responseQuestionId = ans.response_question_id && ans.response_question_id;
+        const responseQuestionId = ans.response_question_id;
 
         const isRobot = 1;
 

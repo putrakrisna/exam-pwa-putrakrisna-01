@@ -52,9 +52,6 @@ const CoreMultiseller = (props) => {
                             ...data,
                         };
                         resolve(orderDataInfo);
-                    })
-                    .catch((e) => {
-                        reject(e);
                     });
             } catch (e) {
                 reject(e);

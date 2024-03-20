@@ -233,7 +233,9 @@ const AddressFormDialog = (props) => {
 
             // only set current location for add mode
             if (typeof window !== 'undefined' && navigator && navigator.geolocation && !addressId) {
-                navigator.geolocation.getCurrentPosition(displayLocationInfo, displayLocationFallback);
+                navigator.permissions.query({ name: 'geolocation' }).then(() => {
+                    navigator.geolocation.getCurrentPosition(displayLocationInfo, displayLocationFallback);
+                });
             }
 
             // update map position after edit data

@@ -1,6 +1,7 @@
 /* eslint-disable camelcase */
 /* eslint-disable no-nested-ternary */
 import Typography from '@common_typography/index';
+import { general } from '@config';
 import { formatPrice } from '@helper_currency';
 import useMediaQuery from '@hook/useMediaQuery';
 import cx from 'classnames';
@@ -8,7 +9,12 @@ import { useTranslation } from 'next-i18next';
 import React from 'react';
 
 const getLowestTierPrice = (tier_price) => {
-    let lowestTierPrice;
+    let lowestTierPrice = {
+        final_price: {
+            value: 0,
+            currency: general.defaultCurrencyCode,
+        },
+    };
     let min = Number.POSITIVE_INFINITY;
     tier_price.forEach((price) => {
         if (price.final_price.value < min) {

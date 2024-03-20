@@ -29,7 +29,6 @@ const Summary = (props) => {
         showItems = false,
         items = [],
         hideButton = false,
-        isDesktop,
         isLoader,
         deleteCart,
         updateCart,
@@ -75,9 +74,7 @@ const Summary = (props) => {
             <div
                 id="desktopSummary"
                 className={
-                    isDesktop
-                        ? cx('flex flex-col p-4', 'sticky top-28 w-full h-auto', 'bg-neutral-50 border rounded-md border-neutral-200')
-                        : cx('flex flex-col p-4', 'sticky top-28 w-full h-auto', 'bg-neutral-50 border rounded-md border-neutral-200')
+                    cx('flex flex-col p-4', 'sticky top-28 w-full h-auto', 'bg-neutral-50 border rounded-md border-neutral-200')
                 }
             >
                 <Typography variant="h1" className="capitalize mb-3">
