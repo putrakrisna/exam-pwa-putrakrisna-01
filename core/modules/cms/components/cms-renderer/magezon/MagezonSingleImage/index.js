@@ -75,7 +75,7 @@ const MagezonSingleImage = (props) => {
         classContainer += ' magezon-img-outline';
     }
 
-    if (image_border_style !== '' || image_border_style !== '' || image_border_radius !== '') {
+    if (image_border_style || image_border_style || image_border_radius) {
         classes += ' magezon-img-outline';
     }
 
