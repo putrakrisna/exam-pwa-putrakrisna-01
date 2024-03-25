@@ -41,7 +41,9 @@ const Login = (props) => {
         setActiveTabs,
     } = props;
 
-    const tabsData = [{ title: 'Email', id: 'tab-btn-email' }, { title: t('login:Phone'), id: 'tab-btn-phone' }];
+    const tabsData = [
+        { title: 'Email', id: 'tab-btn-email' },
+        { title: t('login:Phone'), id: 'tab-btn-phone' }];
     const breadcrumbsData = [{ label: t('login:login'), link: '#', active: true }];
     const signInOptions = [];
     if (features.firebase.config.apiKey !== '' && firebase && firebase.auth && socialLoginMethodData && socialLoginMethodData.length > 0) {

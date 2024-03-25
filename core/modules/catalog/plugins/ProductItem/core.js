@@ -421,9 +421,14 @@ const ProductItem = (props) => {
         }
 
         return (
-            <div className="product-item-price">
+            <div className="swift-product-item-price">
                 <Show when={priceProduct}>
-                    <PriceFormat {...priceProduct} specialFromDate={special_from_date} specialToDate={special_to_date} />
+                    <PriceFormat
+                        {...priceProduct}
+                        specialFromDate={special_from_date}
+                        specialToDate={special_to_date}
+                        textClassName="swift-product-item-price-text"
+                    />
                 </Show>
             </div>
         );
