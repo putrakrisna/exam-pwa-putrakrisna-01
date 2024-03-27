@@ -10,11 +10,9 @@ import Content from '@plugin_productlist/components';
 import { getLocalStorage, setLocalStorage } from '@core/helpers/localstorage';
 import generateConfig from '@core_modules/catalog/helpers/generateConfig';
 import getCategoryFromAgregations from '@core_modules/catalog/helpers/getCategory';
-import getPrice from '@core_modules/catalog/helpers/getPrice';
 import { getTagManager, getTagManagerGA4 } from '@core_modules/catalog/helpers/catalogTagManager';
 import TagManager from 'react-gtm-module';
 import Alert from '@common/Alert';
-import { getLoginInfo } from '@helper_auth';
 
 const ProductList = (props) => {
     const {
@@ -22,7 +20,7 @@ const ProductList = (props) => {
     } = props;
     const router = useRouter();
     const { path, query } = getQueryFromPath(router);
-    const isLogin = getLoginInfo();
+
     /**
      * config from BO
      * pagination or loadmore
@@ -70,13 +68,12 @@ const ProductList = (props) => {
     }
     // end handle previous
 
-    let sizePage;
     const [products, setProducts] = React.useState({
         total_count: 0,
         items: [],
     });
     const [page, setPage] = React.useState(backPage || 1);
-    const [pageSize, setPageSize] = React.useState(sizePage || 10);
+    const [pageSize, setPageSize] = React.useState(15);
     const [totalCount, setTotalCount] = React.useState(0);
     const [totalPage, setTotalPage] = React.useState(0);
     const [loadmore, setLoadmore] = React.useState(false);
@@ -108,7 +105,7 @@ const ProductList = (props) => {
         setFilterSaved(true);
         let queryParams = '';
         // eslint-disable-next-line array-callback-return
-        Object.keys(v).map((key) => {
+        Object.keys(v).forEach((key) => {
             if (key === 'selectedFilter') {
                 // eslint-disable-next-line no-restricted-syntax
                 for (const idx in v.selectedFilter) {
@@ -180,7 +177,6 @@ const ProductList = (props) => {
         };
         config = generateConfig(query, config, elastic, availableFilter);
     }
-    const context = (isLogin && isLogin == 1) || (config.sort && config.sort.key === 'random') ? { request: 'internal' } : {};
 
     const {
         loading,
@@ -199,14 +195,14 @@ const ProductList = (props) => {
         router,
     );
     /* ====Start get price Product==== */
-    const [getProdPrice, { data: dataPrice, loading: loadPrice, error: errorPrice }] = getProductPrice(
+    const [getProdPrice, {
+        data: dataPrice, loading: loadPrice, error: errorPrice,
+    }] = getProductPrice(
         config,
         {
-            variables: {
-                pageSize,
-                currentPage: page,
+            context: {
+                request: 'internal',
             },
-            context,
         },
         router,
     );
@@ -215,7 +211,12 @@ const ProductList = (props) => {
 
     React.useEffect(() => {
         if (typeof window !== 'undefined' && !cachePrice[generateIdentifier]) {
-            getProdPrice();
+            getProdPrice({
+                variables: {
+                    pageSize,
+                    currentPage: page,
+                },
+            });
         }
         // clear timeout when the component unmounts
         return () => {
@@ -305,6 +306,12 @@ const ProductList = (props) => {
                     },
                     fetchPolicy: 'network-only',
                 });
+                getProdPrice({
+                    variables: {
+                        pageSize,
+                        currentPage: pageInput,
+                    },
+                });
                 setPage(pageInput);
                 // to change setLoadmore to false on useEffect
                 timerRef.current = setTimeout(() => {
@@ -331,7 +338,6 @@ const ProductList = (props) => {
                         pageSize,
                         currentPage: pageTemp,
                     },
-                    context,
                     updateQuery: (previousResult, { fetchMoreResult }) => {
                         setLoadmore(false);
                         return {
@@ -340,6 +346,13 @@ const ProductList = (props) => {
                                 items: [...previousResult.products.items, ...fetchMoreResult.products.items],
                             },
                         };
+                    },
+                });
+
+                getProdPrice({
+                    variables: {
+                        pageSize,
+                        currentPage: pageTemp,
                     },
                 });
             }
@@ -424,7 +437,6 @@ const ProductList = (props) => {
         <Content
             {...contentProps}
             {...other}
-            price={getPrice(cachePrice, generateIdentifier, dataPrice)}
             loadPrice={loadPrice}
             errorPrice={errorPrice}
         />

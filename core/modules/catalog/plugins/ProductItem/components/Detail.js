@@ -87,7 +87,7 @@ const Detail = (props) => {
                     <RatingStar value={ratingValue} sizeIcon="sm" prefixName={urlKey} />
                 </div>
             </Show>
-            {Pricing && Pricing}
+            {typeof Pricing !== 'undefined' ? Pricing : null}
         </div>
     );
 };

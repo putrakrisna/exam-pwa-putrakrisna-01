@@ -57,7 +57,7 @@ const Footer = (props) => {
     React.useEffect(() => {
         if (listAcc && listAcc.length > 0) {
             // eslint-disable-next-line array-callback-return
-            listAcc.map((id) => {
+            listAcc.forEach((id) => {
                 const accordionTitle = document.getElementById(id);
                 accordionTitle.onclick = () => {
                     accordionTitle.classList.add('is-open');

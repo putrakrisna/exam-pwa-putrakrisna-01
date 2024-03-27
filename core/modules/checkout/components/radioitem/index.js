@@ -95,7 +95,7 @@ const RadioDeliveryItem = (props) => {
         </div>
     );
 
-    const itemId = id || `${label}_${value}_${Math.random(Date.now())}`.replace(/ /g, '_');
+    const itemId = id || `${label}_${value}_${Date.now()}`.replace(/ /g, '_');
 
     return (
         <div className="swift-checkoutRadioItem items-center flex flex-row">

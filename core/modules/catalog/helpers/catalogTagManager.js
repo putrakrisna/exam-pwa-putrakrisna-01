@@ -38,14 +38,15 @@ export const getTagManagerGA4 = (categoryPath, data) => ({
                 let categoryProduct = '';
                 let categoryOne = '';
                 let categoryTwo = '';
-                // eslint-disable-next-line no-unused-expressions
-                product.categories.length > 0
-                    && ((categoryOne = product.categories[0].name),
-                    (categoryTwo = product.categories[1]?.name),
-                    product.categories.map(({ name }, indx) => {
+
+                if (product?.categories?.length > 0) {
+                    categoryOne = product.categories[0].name;
+                    categoryTwo = product.categories[1]?.name;
+                    product.categories.forEach(({ name }, indx) => {
                         if (indx > 0) categoryProduct += `/${name}`;
                         else categoryProduct += name;
-                    }));
+                    });
+                }
                 return {
                     item_name: product.name,
                     item_id: product.sku,

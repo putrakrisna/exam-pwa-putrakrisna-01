@@ -16,7 +16,7 @@ const MiniCart = (props) => {
     const [errorCart, setErrorCart] = React.useState(false);
     let loadingCart = false;
     let dataCart = null;
-    let getCartData = () => {};
+    let getCartData;
     const [actDeleteItem, delCart] = useMutation(Schema.deleteMiniCartItem, {
         context: {
             request: 'internal',
@@ -101,7 +101,9 @@ const MiniCart = (props) => {
         if (open && typeof window !== 'undefined' && cartId && cartId !== '') {
             setCart({ ...{ items: [] } });
             setErrorCart([]);
-            getCartData();
+            if (getCartData) {
+                getCartData();
+            }
             loadingCart = true;
         }
     }, [open]);

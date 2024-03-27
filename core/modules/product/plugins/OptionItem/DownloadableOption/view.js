@@ -15,7 +15,6 @@ const DownloadView = (props) => {
         linksTitle,
         downloadProductSamples,
         handleOptionDownloadable,
-        handleOptionAll,
         disabled,
         loading,
         showQty = true,

@@ -8,7 +8,7 @@ import cx from 'classnames';
 const DesktopInstall = ({ id = 'wrapper-desktop__install', t, CustomButton }) => {
     const onClick = () => {
         const timestamp = Date.now();
-        const identifier = `${(Math.floor(Math.random() * 100) * Math.floor(Math.random() * 100))}_${timestamp}`;
+        const identifier = `${(Math.floor(Date.now()) * Math.floor(Date.now()))}_${timestamp}`;
         const dataLayer = {
             event: 'countPopupInstallation',
             eventCategory: 'Count Popup Installation',

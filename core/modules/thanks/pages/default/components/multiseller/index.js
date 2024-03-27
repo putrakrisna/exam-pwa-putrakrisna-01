@@ -31,35 +31,31 @@ const CoreMultiseller = (props) => {
     const [customerOrder, setCustomerOrder] = React.useState([]);
     const [loader, setLoader] = React.useState(true);
 
-    const getCustomerOrder = (order_number) =>
-        new Promise((resolve, reject) => {
-            try {
-                apolloClient
-                    .query({
-                        query: Schema.getOrderSchema,
-                        variables: { order_number },
-                        context: {
-                            request: 'internal',
-                        },
-                        errorPolicy: 'all',
-                    })
-                    .then(({ data }) => {
-                        const orderDataInfo = {
-                            order_number,
-                            seller_id: data.ordersFilter.data[0].seller_id,
-                            seller_name: data.ordersFilter.data[0].seller_name,
-                            seller_city: data.ordersFilter.data[0].seller_city,
-                            ...data,
-                        };
-                        resolve(orderDataInfo);
-                    })
-                    .catch((e) => {
-                        reject(e);
-                    });
-            } catch (e) {
-                reject(e);
+    const getCustomerOrder = async (order_number) => {
+        try {
+            const data = await apolloClient
+                .query({
+                    query: Schema.getOrderSchema,
+                    variables: { order_number },
+                    context: {
+                        request: 'internal',
+                    },
+                    errorPolicy: 'all',
+                });
+            if (data) {
+                const orderDataInfo = {
+                    order_number,
+                    seller_id: data.ordersFilter.data[0].seller_id,
+                    seller_name: data.ordersFilter.data[0].seller_name,
+                    seller_city: data.ordersFilter.data[0].seller_city,
+                    ...data,
+                };
+                return Promise.resolve(orderDataInfo);
             }
-        });
+        } catch (error) {
+            return Promise.reject(error);
+        }
+    };
 
     React.useEffect(() => {
         const parsedCheckoutData = checkoutData;
@@ -88,7 +84,7 @@ const CoreMultiseller = (props) => {
 
     React.useEffect(() => {
         if (customerOrder) {
-            customerOrder.map((orders) => {
+            customerOrder.forEach((orders) => {
                 // GTM UA dataLayer
                 const dataLayer = {
                     pageType: 'purchase',

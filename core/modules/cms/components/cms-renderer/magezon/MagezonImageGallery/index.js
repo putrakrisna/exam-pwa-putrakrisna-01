@@ -81,7 +81,7 @@ const MagezonImageGallery = (props) => {
 
     const shuffleSlick = () =>
         items
-            .map((value) => ({ value, sort: Math.random() }))
+            .map((value) => ({ value, sort: Date.now() }))
             .sort((a, b) => a.sort - b.sort)
             .map(({ value }) => value);
 

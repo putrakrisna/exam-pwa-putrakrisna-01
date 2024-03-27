@@ -28,12 +28,13 @@ const OptionsItemDownload = ({
     errorCustomizableOptions,
     customizableOptions,
     priceData = [],
+    stockStatus,
     ...other
 }) => {
     const [qty, setQty] = React.useState(1);
 
     const {
-        __typename, sku, name, categories, price_range, stock_status, url_key, review, sale,
+        __typename, sku, name, categories, price_range, url_key, review, sale,
     } = data;
 
     const reviewValue = parseInt(review?.rating_summary ?? 0, 10) / 20;
@@ -95,8 +96,6 @@ const OptionsItemDownload = ({
         };
         setPrice(final_price_value);
     };
-
-    const handleOptionAll = () => {};
 
     const addToCart = async () => {
         const isLogin = getLoginInfo();
@@ -197,7 +196,7 @@ const OptionsItemDownload = ({
                                     category: categories?.length > 0 ? categories[0].name : '',
                                     list: categories?.length > 0 ? categories[0].name : '',
                                     quantity: qty,
-                                    dimensions4: stock_status,
+                                    dimensions4: stockStatus,
                                 },
                             ],
                         },
@@ -219,7 +218,7 @@ const OptionsItemDownload = ({
                                     item_list_name: categories?.length > 0 ? categories[0].name : '',
                                     quantity: qty,
                                     currency: price_range.minimum_price.regular_price.currency || 'USD',
-                                    item_stock_status: stock_status,
+                                    item_stock_status: stockStatus,
                                     item_reviews_score: reviewValue,
                                     item_reviews_count: review?.reviews_count,
                                     item_sale_product: sale === 0 ? 'NO' : 'YES',
@@ -280,13 +279,12 @@ const OptionsItemDownload = ({
             linksTitle={linksTitle}
             downloadProductSamples={downloadProductSamples}
             handleAddToCart={handleAddToCart}
-            handleOptionAll={handleOptionAll}
             handleOptionDownloadable={handleOptionDownloadable}
             t={t}
             qty={qty}
             setQty={setQty}
             loading={loadingAdd | loading}
-            disabled={stock_status === 'OUT_OF_STOCK'}
+            disabled={stockStatus === 'OUT_OF_STOCK'}
             url_key={url_key}
             {...other}
         />

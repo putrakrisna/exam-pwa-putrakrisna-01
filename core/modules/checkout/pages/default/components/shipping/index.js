@@ -62,8 +62,7 @@ const Shipping = (props) => {
                         inputShippingMethod.push({
                             carrier_code: selectedShipping.name.carrier_code,
                             method_code: selectedShipping.name.method_code,
-                            seller_id: typeof selectedShipping.seller_id === 'string'
-                                ? selectedShipping.seller_id : selectedShipping.seller_id,
+                            seller_id: selectedShipping.seller_id,
                         });
                         const sellerShipping = checkout.data.shippingMethods.filter((item) => item.seller_id === selectedShipping.seller_id);
                         const sellerSelectedShipping = sellerShipping[0].available_shipping_methods.filter(
@@ -163,7 +162,7 @@ const Shipping = (props) => {
 
                         let selectedShipping = '';
                         // eslint-disable-next-line array-callback-return
-                        GTMShippingMethod.map((item, index) => {
+                        GTMShippingMethod.forEach((item, index) => {
                             if (index !== GTMShippingMethod.length - 1) selectedShipping += `${item.label}| `;
                             else selectedShipping += `${item.label}`;
                         });

@@ -17,7 +17,9 @@ const PageProgressLoader = () => {
                 if (oldProgress === 100) {
                     return 100;
                 }
-                const diff = Math.random() * 10;
+                const array = new Uint16Array(1);
+                const random = window.crypto.getRandomValues(array);
+                const diff = random[0];
                 let newProgress;
                 if (oldProgress + diff > 90) {
                     newProgress = 90;

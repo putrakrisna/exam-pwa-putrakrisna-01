@@ -60,7 +60,7 @@ const AwGiftCardProduct = (props) => {
         amountList.push({ label: 'Enter Custom Amount', value: 'custom' });
     }
     const [selectedTemplate, setSelectedTemplate] = useState({});
-    const [selectedCustomAmount, setselectedCustomAmount] = useState([]);
+    const [selectedCustomAmount, setselectedCustomAmount] = useState('');
 
     React.useEffect(() => {
         if (aw_gc_amounts) {

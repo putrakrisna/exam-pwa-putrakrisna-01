@@ -131,7 +131,7 @@ const HomeCore = (props) => {
                 setCartId(token);
             }
         }
-        items.map(async (item) => {
+        items.forEach(async (item) => {
             addToCart({
                 variables: {
                     cartId,

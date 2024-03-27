@@ -56,10 +56,12 @@ const internalGenerateSession = async (parent, { state }, context) => {
             });
             context.res.setHeader('Set-Cookie', serialized);
         }
+        let isLogin = false;
+        if (token && token !== '') isLogin = true;
         return {
             result: true,
             cartId,
-            isLogin: !!token,
+            isLogin,
             redirect_path,
             storeCode,
             adminId,

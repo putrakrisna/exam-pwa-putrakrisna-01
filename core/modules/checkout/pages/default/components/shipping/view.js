@@ -121,7 +121,7 @@ const ShippingView = (props) => {
         const config =
             shippingMethodList && shippingMethodList.storeConfig ? JSON.parse(`${shippingMethodList.storeConfig.shipments_configuration}`) : {};
         const group = config ? Object.keys(config) : [];
-        const sellerGroup = [];
+        let sellerGroup = [];
 
         const shipping = [];
         // const state = { ...checkout };
@@ -134,8 +134,9 @@ const ShippingView = (props) => {
 
                 // create group data if same label on config
                 if (isMultiSeller) {
+                    const newSellerGroup = [];
                     checkout.data.shippingMethods.forEach((avx) => {
-                        sellerGroup.push({ seller_id: avx.seller_id, data: [] });
+                        newSellerGroup.push({ seller_id: avx.seller_id, data: [] });
                         for (let idx = 0; idx < avx.available_shipping_methods.length; idx += 1) {
                             const element = avx.available_shipping_methods[idx];
                             const identifier = `${element.value.replaceAll(' ', '-')}`;
@@ -161,6 +162,7 @@ const ShippingView = (props) => {
                             }
                         }
                     });
+                    sellerGroup = [...sellerGroup, ...newSellerGroup];
                 } else {
                     for (let idx = 0; idx < available.length; idx += 1) {
                         const element = available[idx];
@@ -275,7 +277,7 @@ const ShippingView = (props) => {
         if (shipping.length > 0) {
             const uniqueSellerGroup = [];
             if (isMultiSeller) {
-                sellerGroup.filter((seller) => {
+                sellerGroup = sellerGroup.filter((seller) => {
                     const isDuplicate = uniqueSellerGroup.includes(seller.seller_id);
 
                     if (!isDuplicate) {

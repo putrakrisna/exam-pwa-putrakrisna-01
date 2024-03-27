@@ -40,15 +40,6 @@ const MagezonInstagramFeedView = (props) => {
         onclick,
         link_target,
     } = props;
-    let Popup = <></>;
-
-    switch (onclick) {
-        case 'photoswipe':
-            Popup = PhotoSwipe;
-            break;
-        default:
-            Popup = PhotoSwipe;
-    }
 
     const [open, setOpen] = React.useState(false);
     const [imagePosition, setImagePosition] = React.useState(false);
@@ -80,7 +71,7 @@ const MagezonInstagramFeedView = (props) => {
     return (
         <>
             {open && data && data.length > 0 && (
-                <Popup open={open} setOpen={() => setOpen(false)} data={data} imagePosition={imagePosition} max_items={max_items} />
+                <PhotoSwipe open={open} setOpen={() => setOpen(false)} data={data} imagePosition={imagePosition} max_items={max_items} />
             )}
             <div
                 className={cx('magezon-instagram', {
