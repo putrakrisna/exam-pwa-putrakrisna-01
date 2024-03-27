@@ -273,7 +273,7 @@ class MyApp extends App {
                                     data: payload.data,
                                 });
                             }
-                        }, Math.random() * 1000);
+                        }, 1000);
                     });
                 });
             } catch (err) {

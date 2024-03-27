@@ -89,7 +89,7 @@ const SwitcherCurrency = (props) => {
     };
 
     React.useEffect(() => {
-        if (window !== 'undefined' && open) {
+        if (typeof window !== 'undefined' && open) {
             const header = document.getElementById('header-inner');
             const checkScrollTop = () => {
                 // handle show hide header

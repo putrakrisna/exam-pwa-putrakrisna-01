@@ -1,5 +1,4 @@
 /* eslint-disable no-nested-ternary */
-// import TextField from '@common_textfield';
 import TextField from '@common_forms/TextField';
 import Typography from '@common_typography';
 import { passwordStrength, storeConfigNameCookie } from '@config';

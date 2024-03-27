@@ -173,7 +173,7 @@ const NewsletterView = (props) => {
                     }
                     .block-newsletter {
                         margin: 0 auto;
-                        max-width: ${layout_type === 'box' ? '100%' : '100%'};
+                        max-width: 100%;
                     }
                     .form.subscribe {
                         flex-direction: ${layout_type === 'box' ? 'column' : 'row'};

@@ -8,7 +8,7 @@ import React, { useEffect, useState } from 'react';
 
 // Inspired by blueprintjs
 function CustomRadio({
-    id = `radio-${Math.random(12)}`, valueData = [], onChange = () => {}, value = '', CustomItem, disabled = false, storeConfig, sellerId,
+    id = `radio-${Date.now()}`, valueData = [], onChange = () => {}, value = '', CustomItem, disabled = false, storeConfig, sellerId,
 }) {
     const [valueItem, setValueItem] = useState('');
     useEffect(() => {

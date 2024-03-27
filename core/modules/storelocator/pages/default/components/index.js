@@ -16,15 +16,29 @@ const StoreLocatorContent = ({ gmapKey, storeLocations, t }) => {
             }))) || null,
     );
 
-    // effect
-    React.useEffect(() => {
-        if (storeList !== null) {
-            if (navigator && navigator.geolocation) {
+    const handleGeolocation = async () => {
+        try {
+            const { state } = await navigator.permissions.query({
+                name: 'geolocation',
+            });
+
+            if (state === 'granted') {
                 navigator.geolocation.getCurrentPosition((position) => {
                     const lng = position.coords.longitude;
                     const lat = position.coords.latitude;
                     setCenterPosition({ lat, lng });
                 });
+            }
+        } catch {
+            //
+        }
+    };
+
+    // effect
+    React.useEffect(() => {
+        if (storeList !== null) {
+            if (navigator && navigator.geolocation) {
+                handleGeolocation();
             } else {
                 setCenterPosition({ lat: -6.17539, lng: 106.82715 });
             }

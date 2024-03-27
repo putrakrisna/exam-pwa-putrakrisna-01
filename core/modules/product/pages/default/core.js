@@ -40,13 +40,13 @@ const ContentDetail = ({
     React.useEffect(() => {
         let categoryProduct = '';
         let categoryOne = '';
-        // eslint-disable-next-line no-unused-expressions
-        item.categories.length > 0
-            && ((categoryOne = item.categories[0].name),
-            item.categories.map(({ name }, indx) => {
+        if (item.categories.length > 0) {
+            categoryOne = item.categories[0].name;
+            item.categories.forEach(({ name }, indx) => {
                 if (indx > 0) categoryProduct += `/${name}`;
                 else categoryProduct += name;
-            }));
+            });
+        }
         // GTM UA dayaLayer
         const tagManagerArgs = {
             dataLayer: {

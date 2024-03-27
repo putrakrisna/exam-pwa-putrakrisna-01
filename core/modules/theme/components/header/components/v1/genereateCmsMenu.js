@@ -22,7 +22,7 @@ const generateChildren = (dataChild = [], latestLevel = 1) => {
                 const url_key = tagA[0]?.props?.url_key || '';
 
                 const itemMenu = {
-                    uid: Math.random(12345),
+                    uid: Date.now(),
                     name: tagA[0]?.props?.children || '',
                     level: 2,
                     path: url_path,
@@ -40,7 +40,7 @@ const generateChildren = (dataChild = [], latestLevel = 1) => {
                 const url_path = removeFirstSlash(childA?.props?.href || '');
                 const url_key = childA?.props?.url_key || '';
                 const itemMenu = {
-                    uid: Math.random(12345),
+                    uid: Date.now(),
                     name: childA?.props?.children || '',
                     level: latestLevel + 1,
                     path: url_path,

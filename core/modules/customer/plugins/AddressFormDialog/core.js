@@ -197,6 +197,20 @@ const AddressFormDialog = (props) => {
         },
     });
 
+    const handleGeolocation = async () => {
+        try {
+            const { state } = await navigator.permissions.query({
+                name: 'geolocation',
+            });
+
+            if (state === 'granted') {
+                navigator.geolocation.getCurrentPosition(displayLocationInfo, displayLocationFallback);
+            }
+        } catch {
+            //
+        }
+    };
+
     // togle enableSplitCity, set true when countryId === 'ID' & splitCity config === true
     React.useEffect(() => {
         const countryId = formik.values.country && formik.values.country.id;
@@ -233,7 +247,9 @@ const AddressFormDialog = (props) => {
 
             // only set current location for add mode
             if (typeof window !== 'undefined' && navigator && navigator.geolocation && !addressId) {
-                navigator.geolocation.getCurrentPosition(displayLocationInfo, displayLocationFallback);
+                if (navigator.geolocation) {
+                    handleGeolocation();
+                }
             }
 
             // update map position after edit data

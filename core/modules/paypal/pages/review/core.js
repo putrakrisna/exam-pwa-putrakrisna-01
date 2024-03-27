@@ -142,7 +142,7 @@ const PaypalReviewCore = (props) => {
             isGuest: !isLogin,
         });
 
-        const loadCart = isLogin ? !dataCart && !itemCart : !dataCart && !itemCart;
+        const loadCart = !dataCart && !itemCart;
 
         if (loadCart) {
             getCart({ variables: { cartId } });

@@ -157,7 +157,7 @@ const Button = (props) => {
                 {...linkProps}
             >
                 <ButtonContent />
-                {customChildren && customChildren}
+                {typeof customChildren !== 'undefined' ? customChildren : null}
             </Link>
         );
     }
@@ -182,7 +182,7 @@ const Button = (props) => {
             {...restProps}
         >
             <ButtonContent />
-            {customChildren && customChildren}
+            {typeof customChildren !== 'undefined' ? customChildren : null}
         </button>
     );
 };

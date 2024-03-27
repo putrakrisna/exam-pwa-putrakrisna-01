@@ -10,7 +10,7 @@ const MobileInstall = (props) => {
     const { appName, installMessage, storeConfig } = props;
     const handleClickInstallApp = () => {
         const timestamp = Date.now();
-        const identifier = `${Math.floor(Math.random() * 100) * Math.floor(Math.random() * 100)}_${timestamp}`;
+        const identifier = `${Math.floor(Date.now()) * Math.floor(Date.now())}_${timestamp}`;
         const dataLayer = {
             event: 'countPopupInstallation',
             eventCategory: 'Count Popup Installation',

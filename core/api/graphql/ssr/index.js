@@ -7,11 +7,11 @@ const { getAppEnv } = require('../../../helpers/env');
 function gqlSSR(query, variables = {}, context = {}, config = {}) {
     let token = '';
     if (context.session || context.headers) {
-        token = context.cookies[customerTokenKey]
-            ? context.cookies[customerTokenKey]
-            : context.headers.authorization
-                ? context.headers.authorization
-                : '';
+        if (context.cookies[customerTokenKey]) {
+            token = context.cookies[customerTokenKey];
+        } else if (context.headers.authorization) {
+            token = context.headers.authorization;
+        }
     }
     const additionalHeader = storeCode ? { store: storeCode } : {};
     if (token && token !== '') {

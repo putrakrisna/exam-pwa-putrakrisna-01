@@ -231,7 +231,7 @@ const priceTiers = `
     }
     `;
 
-export const getCustomer = (config = {}) => gql`
+export const getCustomer = () => gql`
 {
     customer {
       id
@@ -272,7 +272,7 @@ export const getCustomer = (config = {}) => gql`
       items {
         id
         product {
-          ${productDetail(config)}
+          ${productDetail()}
           ${priceRange}
           ${priceTiers}
         }

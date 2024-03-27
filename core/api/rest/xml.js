@@ -214,11 +214,10 @@ const getXmlData = async (res) => {
         const paths = [];
 
         // create all sitemap files
-        contents.map((contentVal, index) => {
+        contents.forEach((contentVal, index) => {
             const pathName = `${baseDir}sitemap${index + 1}.xml`;
             fs.writeFileSync(pathName, contentVal);
             paths.push(pathName);
-            return true;
         });
 
         const sitemapInfo = JSON.stringify({
@@ -255,9 +254,8 @@ const generateXml = async (req, res) => {
                         paths = sitemapInfo?.paths;
                     }
                     // delete all sitemap files
-                    paths.map((pathName) => {
+                    paths.forEach((pathName) => {
                         fs.unlinkSync(pathName);
-                        return true;
                     });
 
                     // delete sitemap-info.json

@@ -132,7 +132,7 @@ const NewContent = (props) => {
         stateData.errorForm = false;
         if (formData.custom_fields.length < fieldRequets.length) stateData.errorForm = true;
         if (selectItem.length > 0) {
-            formData.order_items.map((item) => {
+            formData.order_items.forEach((item) => {
                 if (item.custom_fields.length < fieldItem.length) stateData.errorForm = true;
             });
         } else {

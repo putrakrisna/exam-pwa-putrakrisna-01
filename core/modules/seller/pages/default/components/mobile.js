@@ -52,7 +52,33 @@ function MobileContent(props) {
                             }
                         </div>
                     );
-                case 'image' || 'two_columns':
+                case 'image':
+                    return (
+                        <div className="flex flex-row">
+                            {
+                                item.widgets && item.widgets.length > 0 && (
+                                    item.widgets.map((widget) => (
+                                        widget.type === 'image'
+                                            ? (
+                                                <div className="basis-full" style={{ margin: 'auto' }}>
+                                                    <Link href={widget.hyperlink ? widget.hyperlink : '/#'}>
+
+                                                        <img src={widget.url} width="100%" className="" alt="img" />
+
+                                                    </Link>
+                                                </div>
+                                            )
+                                            : (
+                                                <div className="basis-full">
+                                                    <iframe width="100%" height="600px" src={widget.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowFullScreen />
+                                                </div>
+                                            )
+                                    ))
+                                )
+                            }
+                        </div>
+                    );
+                case 'two_columns':
                     return (
                         <div className="flex flex-row">
                             {

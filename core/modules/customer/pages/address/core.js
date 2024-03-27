@@ -53,6 +53,20 @@ const AddressCustomer = (props) => {
         });
     };
 
+    const handleGeolocation = async () => {
+        try {
+            const { state } = await navigator.permissions.query({
+                name: 'geolocation',
+            });
+
+            if (state === 'granted') {
+                navigator.geolocation.getCurrentPosition(displayLocationInfo);
+            }
+        } catch {
+            //
+        }
+    };
+
     useEffect(() => {
         actGetCustomerAddress();
     }, []);
@@ -80,7 +94,7 @@ const AddressCustomer = (props) => {
         }
 
         if (navigator.geolocation) {
-            return navigator.geolocation.getCurrentPosition(displayLocationInfo);
+            handleGeolocation();
         }
     }, [dataAddress]);
 
