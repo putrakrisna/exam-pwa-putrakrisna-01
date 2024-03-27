@@ -68,6 +68,7 @@ const ForgotPassword = (props) => {
                             </div>
                             <Button
                                 className="flex justify-center"
+                                id="swiftButtonForgotPasswordBackToLogin"
                                 onClick={() => Router.push('/customer/account/login')}
                             >
                                 {t('forgotpassword:backToLogin')}
@@ -137,6 +138,7 @@ const ForgotPassword = (props) => {
                             </div>
                         ) : null}
                         <Button
+                            id="swiftButtonForgotPasswordSend"
                             className="flex justify-center capitalize"
                             type="submit"
                             disabled={data?.otpConfig.otp_enable[0].enable_otp_forgot_password || disabled}

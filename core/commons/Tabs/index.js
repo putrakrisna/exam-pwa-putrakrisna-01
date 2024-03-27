@@ -82,6 +82,7 @@ const Tabs = (props) => {
                                             tabTitleListWrapperClassName,
                                         )}
                                         key={index}
+                                        id={item.id || `tab-${index}`}
                                     >
                                         <a
                                             className={cx(
@@ -107,7 +108,11 @@ const Tabs = (props) => {
                                 );
                             }
                             return (
-                                <li className={cx(usedActive === index ? tabTitleListActiveClassName : tabTitleListClassName)} key={index}>
+                                <li
+                                    id={item.id || `tab-${index}`}
+                                    className={cx(usedActive === index ? tabTitleListActiveClassName : tabTitleListClassName)}
+                                    key={index}
+                                >
                                     <a
                                         className={cx(
                                             'swift-tab-item',

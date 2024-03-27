@@ -20,41 +20,48 @@ const Layout = (props) => {
     const isLogin = getLoginInfo();
 
     const menu = [
-        { href: '/customer/account', title: t('customer:menu:myAccount') },
-        { title: t('customer:menu:dashboard') },
+        { href: '/customer/account', title: t('customer:menu:myAccount'), id: 'swiftCustomerMenuAccount' },
+        { title: t('customer:menu:dashboard'), id: 'swiftCustomerMenuDashboard' },
         ...pushIf(modules.notification.enabled, {
             href: '/inboxnotification/notification',
             title: t('customer:menu:notification'),
+            id: 'swiftCustomerNotification',
         }),
-        { href: '/sales/order/history', title: t('customer:menu:myOrder') },
+        { href: '/sales/order/history', title: t('customer:menu:myOrder'), id: 'swiftCustomerMenuOrder' },
         ...pushIf(modules.wishlist.enabled, {
             href: '/wishlist',
             title: t('customer:menu:wishlist'),
+            id: 'swiftCustomerMenuWishlist',
         }),
-        { href: '/sales/downloadable/history', title: t('customer:menu:myDownload') },
+        { href: '/sales/downloadable/history', title: t('customer:menu:myDownload'), id: 'swiftCustomerMenuMyDownload' },
         {
             href: storeConfig?.OmsRma?.enable_oms_rma ? storeConfig.OmsRma.oms_rma_link : '/rma/customer',
             title: t('customer:menu:return'),
+            id: 'swiftCustomerMenuReturn',
         },
         ...pushIf(modules.storecredit.enabled, {
             href: '/customer/account/storecredit',
             title: t('customer:menu:storeCredit'),
+            id: 'swiftCustomerMenuStoreCredit',
         }),
-        { href: '/customer/account/address', title: t('customer:menu:address') },
-        { href: '/customer/account/profile', title: t('customer:menu:accountInformation') },
+        { href: '/customer/account/address', title: t('customer:menu:address'), id: 'swiftCustomerMenuAddress' },
+        { href: '/customer/account/profile', title: t('customer:menu:accountInformation'), id: 'swiftCustomerMenuAccountInformation' },
         ...pushIf(modules.productreview.enabled, {
             href: '/review/customer',
             title: t('customer:menu:myProductReview'),
+            id: 'swiftCustomerMenuMyProductReview',
         }),
         ...pushIf(modules.giftcard.enabled, {
             href: '/awgiftcard/card',
             title: 'Gift Card',
+            id: 'swiftCustomerMenuGiftCard',
         }),
         ...pushIf(modules.rewardpoint.enabled, {
             href: '/aw_rewardpoints/info',
             title: t('customer:menu:rewardPoint'),
+            id: 'swiftCustomerMenuRewardPoint',
         }),
-        { href: '/customer/newsletter', title: t('customer:setting:newsletter') },
+        { href: '/customer/newsletter', title: t('customer:setting:newsletter'), id: 'swiftCustomerMenuNewsletter' },
     ];
     for (let index = 0; index < menu.length; index++) {
         const item = menu[index];
@@ -85,6 +92,7 @@ const Layout = (props) => {
                                     if (idx === 1) {
                                         return (
                                             <li
+                                                id={`${val.id}-accordion`}
                                                 key={idx}
                                                 className={cx('px-3', 'mt-3', 'pt-2', 'pb-2', 'text-base', 'rounded-md', {
                                                     'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
@@ -101,6 +109,7 @@ const Layout = (props) => {
                                                 <div className={cx('mx-2', 'my-2', 'h-[1px]', 'bg-neutral-200')} />
                                                 <li
                                                     key={idx}
+                                                    id={`${val.id}-accordion`}
                                                     className={cx('px-3', 'py-2', 'text-base', 'rounded-md', {
                                                         'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
                                                             router.asPath === val.href || activeMenu === val.href,
@@ -117,6 +126,7 @@ const Layout = (props) => {
                                                 <div className={cx('mx-2', 'my-2', 'h-[1px]', 'bg-neutral-200')} />
                                                 <li
                                                     key={idx}
+                                                    id={`${val.id}-accordion`}
                                                     className={cx('px-3', 'py-2', 'text-base', 'rounded-md', {
                                                         'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
                                                             router.asPath === val.href || activeMenu === val.href,
@@ -130,6 +140,7 @@ const Layout = (props) => {
                                     return (
                                         <li
                                             key={idx}
+                                            id={`${val.id}-accordion`}
                                             className={cx('px-3', 'py-2', 'text-base', 'rounded-md', {
                                                 'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
                                                     router.asPath === val.href || activeMenu === val.href,
@@ -151,6 +162,7 @@ const Layout = (props) => {
                                     return (
                                         <li
                                             key={idx}
+                                            id={val.id}
                                             className={cx(
                                                 'mx-3',
                                                 'pt-3',
@@ -170,6 +182,7 @@ const Layout = (props) => {
                                     return (
                                         <li
                                             key={idx}
+                                            id={val.id}
                                             className={cx('px-3', 'mt-3', 'pt-2', 'pb-2', 'text-base', 'rounded-md', {
                                                 'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
                                                     router.asPath === '/customer/account' || activeMenu === '/customer/account',
@@ -185,6 +198,7 @@ const Layout = (props) => {
                                             <div className={cx('mx-2', 'my-2', 'h-[1px]', 'bg-neutral-200')} />
                                             <li
                                                 key={idx}
+                                                id={val.id}
                                                 className={cx('px-3', 'py-2', 'text-base', 'rounded-md', {
                                                     'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
                                                         router.asPath === val.href || activeMenu === val.href,
@@ -201,6 +215,7 @@ const Layout = (props) => {
                                             <div className={cx('mx-2', 'my-2', 'h-[1px]', 'bg-neutral-200')} />
                                             <li
                                                 key={idx}
+                                                id={val.id}
                                                 className={cx('px-3', 'py-2', 'text-base', 'rounded-md', {
                                                     'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
                                                         router.asPath === val.href || activeMenu === val.href,
@@ -214,6 +229,7 @@ const Layout = (props) => {
                                 return (
                                     <li
                                         key={idx}
+                                        id={val.id}
                                         className={cx('px-3', 'py-2', 'text-base', 'rounded-md', {
                                             'bg-neutral-50 border-[1px] border-neutral-100 font-medium':
                                                 router.asPath === val.href || activeMenu === val.href,
@@ -227,7 +243,13 @@ const Layout = (props) => {
                     </div>
                 </div>
                 <div className="desktop:basis-9/12 xs:basis-full sm:basis-full">
-                    <Typography variant="h2" type="bold" letter="capitalize" className={cx('mobile:max-desktop:hidden', 'pl-0', 'mb-[20px]')}>
+                    <Typography
+                        id="swiftPageTitleCustomerLayout"
+                        variant="h2"
+                        type="bold"
+                        letter="capitalize"
+                        className={cx('mobile:max-desktop:hidden', 'pl-0', 'mb-[20px]')}
+                    >
                         {title || titlePage}
                     </Typography>
                     {children}

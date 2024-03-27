@@ -29,6 +29,8 @@ const WishlistComp = (props) => {
                 positiveLabel={t('common:button:yes')}
                 negativeLabel={t('common:button:cancel')}
                 negativeAction={() => setOpenDelete(!openDelete)}
+                classWrapper="swift-dialog-confirm-delete-wishlist"
+                classContainerAction="swift-dialog-confirm-delete-wishlist-action"
             />
             <ProductItem
                 isGrid

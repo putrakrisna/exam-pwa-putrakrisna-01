@@ -6,9 +6,9 @@ const FormTemplate = (props) => {
     const { formik, t, loading } = props;
     return (
         <>
-            <form className="flex-col gap-6 inline-flex mx-auto w-full" onSubmit={formik.handleSubmit}>
+            <form className="flex-col gap-6 inline-flex mx-auto w-full swift-trackingorder-form" onSubmit={formik.handleSubmit}>
                 <TextField
-                    className="w-full"
+                    className="w-full swift-trackingorder-email-textField"
                     label={t('trackingorder:email')}
                     name="email"
                     value={formik.values.email}
@@ -22,7 +22,7 @@ const FormTemplate = (props) => {
                     absolute={false}
                 />
                 <TextField
-                    className="w-full"
+                    className="w-full swift-trackingorder-orderid"
                     label={t('trackingorder:orderId')}
                     name="order_id"
                     value={formik.values.order_id}
@@ -36,7 +36,7 @@ const FormTemplate = (props) => {
                     absolute={false}
                 />
                 <div className="">
-                    <Button fullWidth type="submit" rootClassName="" loading={loading}>
+                    <Button fullWidth type="submit" rootClassName="swift-trackingorder-btn" loading={loading}>
                         <Typography variant="span" type="bold" letter="uppercase" color="white">
                             {t('trackingorder:track')}
                         </Typography>

@@ -171,7 +171,7 @@ const Dialog = ({
                                             <Button
                                                 variant="outlined"
                                                 onClick={negativeAction}
-                                                className="py-[12px] px-[22px] !border-0 xs:w-[50%] sm:w-[50%] md:w-auto"
+                                                className="negative-action py-[12px] px-[22px] !border-0 xs:w-[50%] sm:w-[50%] md:w-auto"
                                                 classNameText="justify-center"
                                                 {...negativeProps}
                                             >
@@ -185,7 +185,7 @@ const Dialog = ({
                                                 onClick={positiveAction}
                                                 className={
                                                     cx(
-                                                        'py-[12px] px-[22px] border-0 mobile:w-[50%] desktop:w-auto tablet:w-auto',
+                                                        'positive-action py-[12px] px-[22px] border-0 mobile:w-[50%] desktop:w-auto tablet:w-auto',
                                                         !negativeAction && '!w-[100%]',
                                                     )
                                                 }

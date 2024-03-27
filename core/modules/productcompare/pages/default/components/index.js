@@ -85,7 +85,7 @@ const Content = (props) => {
                                                 className="!shadow-none !border-none !hover:shadow-none !hover:border-none"
                                             />
                                             <ClearIcon
-                                                className="cursor-pointer absolute w-5 h-5 top-1 right-1 z-[1]"
+                                                className="cursor-pointer absolute w-5 h-5 top-1 right-1 z-[1] swift-clear-product-compare-item"
                                                 onClick={() => confirmDelete(productCompare)}
                                             />
                                         </div>

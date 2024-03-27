@@ -39,6 +39,7 @@ const AddressFormDialog = (props) => {
         pageTitle,
         disableDefaultAddress = false,
         Content,
+        identifier,
     } = props;
     let { storeConfig } = props;
 
@@ -492,6 +493,7 @@ const AddressFormDialog = (props) => {
             responCountries={responCountries}
             getRegion={getRegion}
             responRegion={responRegion}
+            identifier={identifier}
         />
     );
 };

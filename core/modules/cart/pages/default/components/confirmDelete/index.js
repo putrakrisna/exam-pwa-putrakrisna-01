@@ -11,6 +11,8 @@ const ConfirmationDelete = ({
         positiveLabel={t('common:button:yes')}
         negativeLabel={t('common:button:cancel')}
         negativeAction={handleCancel}
+        classWrapper="swift-dialog-confirm-delete-cart-item"
+        classContainerAction="swift-dialog-confirm-delete-cart-item-action"
     />
 );
 

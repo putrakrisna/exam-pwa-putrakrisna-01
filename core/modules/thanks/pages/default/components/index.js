@@ -79,7 +79,7 @@ const View = (props) => {
                 </Typography>
             </div>
             <div className="mt-5 mb-4 flex flex-col items-center justify-center w-full gap-2">
-                <Typography className="text-center">
+                <Typography className="text-center swift-thanks-order-number">
                     {`${t('thanks:yourOrderId')} : `}
                     {isLogin && isLogin == 1 ? (
                         <>

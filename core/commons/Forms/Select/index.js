@@ -151,6 +151,7 @@ const Select = (props) => {
                                         onChange(d.value);
                                         setOpen(false);
                                     }}
+                                    id={(typeof d.value === 'string' ? d.value : JSON.stringify(d.value)) || `select-item-${idx}`}
                                 >
                                     <Typography variant="bd-2b" className="">
                                         {d.label}

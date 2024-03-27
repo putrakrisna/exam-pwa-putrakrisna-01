@@ -96,7 +96,7 @@ const ModalResult = (props) => {
         }
 
         return (
-            <div className="'w-full flex flex-col desktop:flex-row-reverse gap-2 !bg-[transparent]',">
+            <div className="swift-trackingorder-view-wrapper w-full flex flex-col desktop:flex-row-reverse gap-2 !bg-[transparent]">
                 <div className="w-full desktop:w-auto flex justify-end">
                     <div
                         role="presentation"
@@ -114,7 +114,7 @@ const ModalResult = (props) => {
                     className={cx('w-full h-max max-h-[calc(100vh-60px)] p-4 tablet:p-8 bg-neutral-white rounded-lg', 'shadow-xl overflow-y-scroll')}
                 >
                     {modalData?.data || data ? (
-                        <div className="list-container">
+                        <div className="list-container swift-trackingorder-view-list-wrapper">
                             {trackOrder}
                             {items.map((item, i) => (
                                 <>
@@ -130,7 +130,11 @@ const ModalResult = (props) => {
                             ))}
                         </div>
                     ) : (
-                        <div className="p-2 bg-yellow-500 text-neutral-white my-[32px]">{t('trackingorder:noDataAvailable')}</div>
+                        <div
+                            className="p-2 bg-yellow-500 text-neutral-white my-[32px] swift-trackingorder-notfound-wrapper"
+                        >
+                            {t('trackingorder:noDataAvailable')}
+                        </div>
                     )}
                 </div>
                 <style jsx>

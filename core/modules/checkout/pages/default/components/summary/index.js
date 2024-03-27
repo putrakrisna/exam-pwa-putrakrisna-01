@@ -580,6 +580,7 @@ const Summary = ({
                 {buttonOnly ? (
                     <Button
                         disabled={disablePlaceOrder}
+                        id="swiftCheckoutPlaceOrderButton"
                         className="w-full"
                         classNameText="justify-center text-lg"
                         loading={loading}

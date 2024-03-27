@@ -4,9 +4,7 @@
 /* eslint-disable max-len */
 import Image from '@common_image';
 import Typography from '@common_typography';
-import ConfirmationDelete from '@core_modules/cart/pages/default/components/confirmDelete';
 import Link from 'next/link';
-import { useState } from 'react';
 import Show from '@common/Show';
 import { formatPrice } from '@core/helpers/currency';
 import Button from '@common/Button';
@@ -18,9 +16,6 @@ import OrderNote from '@core_modules/cart/pages/default/components/item/OrderNot
 const ItemView = (props) => {
     const {
         t,
-        confirmDel,
-        handleDelete,
-        setConfirmDel,
         product,
         configurable_options,
         quantity,
@@ -38,6 +33,7 @@ const ItemView = (props) => {
         id,
         isMultiSeller,
         aw_giftcard_option,
+        handleOpenDelete,
     } = props;
 
     const cartCustomOptions = SimpleMiniCustomizable || ConfigurableMiniCustomizable || customizable_options;
@@ -50,7 +46,6 @@ const ItemView = (props) => {
 
     return (
         <div className="flex flex-row gap-4">
-            <ConfirmationDelete t={t} open={confirmDel} handleDelete={handleDelete} handleCancel={() => setConfirmDel(false)} />
             <div className="w-[110px] tablet:w-[120px] h-[110px] tablet:h-[120px] rounded-lg relative">
                 <Image
                     src={product.small_image.url}
@@ -157,7 +152,12 @@ const ItemView = (props) => {
                         iconPosition="right"
                         icon={<TrashIcon />}
                         variant="plain"
-                        onClick={() => setConfirmDel(props)}
+                        onClick={() => handleOpenDelete({
+                            id,
+                            product,
+                            quantity,
+                            prices,
+                        })}
                     />
                 </div>
                 <div className="flex flex-col gap-[6px] tablet:flex-row justify-between tablet:items-center w-full">
@@ -200,7 +200,6 @@ const ItemProduct = (props) => {
         product,
         quantity,
         configurable_options = [],
-        deleteItem,
         custom_price,
         handleFeed,
         bundle_options,
@@ -214,20 +213,10 @@ const ItemProduct = (props) => {
         currencyCache,
         aw_giftcard_option,
         updateItem,
+        handleOpenDelete,
     } = props;
 
-    const { id, custom_price: prices } = props;
-
-    const [confirmDel, setConfirmDel] = useState(false);
-    const handleDelete = () => {
-        setConfirmDel(false);
-        deleteItem({
-            id,
-            product,
-            quantity,
-            prices,
-        });
-    };
+    const { id } = props;
 
     const handleAddWishlist = () => {
         handleFeed(props);
@@ -238,10 +227,8 @@ const ItemProduct = (props) => {
             note={note}
             errorCartItems={errorCartItems}
             cartItemId={cartItemId}
-            confirmDel={confirmDel}
-            handleDelete={handleDelete}
             handleAddWishlist={handleAddWishlist}
-            setConfirmDel={setConfirmDel}
+            handleOpenDelete={handleOpenDelete}
             product={product}
             configurable_options={configurable_options}
             bundle_options={bundle_options}

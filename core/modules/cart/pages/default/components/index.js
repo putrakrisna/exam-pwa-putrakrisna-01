@@ -10,6 +10,8 @@ import Show from '@common/Show';
 import EmptyView from '@core_modules/cart/pages/default/components/empty';
 import ItemView from '@core_modules/cart/pages/default/components/item';
 import useMediaQuery from '@hook/useMediaQuery';
+import ConfirmationDelete from '@core_modules/cart/pages/default/components/confirmDelete';
+import { useState } from 'react';
 
 const CrossSell = dynamic(() => import('@core_modules/cart/pages/default/components/crosssell'), { ssr: false });
 const CrossSellView = dynamic(() => import('@core_modules/cart/pages/default/components/crosssell/view'), { ssr: false });
@@ -50,6 +52,31 @@ const Content = (props) => {
 
     const cartId = getCartId();
     const [getScv2Url, { loading: loadingScv2Url }] = getCheckoutScv2Url();
+
+    const [confirmDel, setConfirmDel] = useState(false);
+    const [itemDelete, setItemDelete] = useState({});
+
+    const handleCloseDelete = () => {
+        setConfirmDel(false);
+        setItemDelete({});
+    };
+
+    const handleDelete = () => {
+        deleteItem({ ...itemDelete });
+        setTimeout(() => {
+            handleCloseDelete();
+        }, 500);
+    };
+
+    const handleOpenDelete = ({
+        id, product, quantity, prices,
+    }) => {
+        setItemDelete({
+            id, product, quantity, prices,
+        });
+        setConfirmDel(true);
+    };
+
     const handleOnCheckoutClicked = () => {
         const minimumOrderEnabled = storeConfig.minimum_order_enable;
         const grandTotalValue = allData.prices.grand_total.value;
@@ -96,6 +123,7 @@ const Content = (props) => {
 
     return (
         <div className="flex flex-col cart-pages">
+            <ConfirmationDelete t={t} open={confirmDel} handleDelete={handleDelete} handleCancel={handleCloseDelete} />
             <div className="xs:basis-full">
                 <GimmickBanner data={dataCart.promoBanner || []} t={t} {...other} />
             </div>
@@ -139,6 +167,7 @@ const Content = (props) => {
                                 storeConfig={storeConfig}
                                 currencyCache={currencyCache}
                                 updateItem={updateItem}
+                                handleOpenDelete={handleOpenDelete}
                             />
                         </div>
                     </div>

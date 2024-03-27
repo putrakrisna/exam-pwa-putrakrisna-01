@@ -71,6 +71,9 @@ const Sorting = (props) => {
             inputProps={{
                 className: 'h-[34px] !font-semibold placeholder:!text-neutral placeholder:!font-semibold',
             }}
+            optionProps={{
+                className: 'swift-sort-product-wrapper',
+            }}
         />
     );
 };

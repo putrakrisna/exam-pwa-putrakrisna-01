@@ -92,8 +92,8 @@ const ProductDetailAction = ({
                 <div
                     className={cx(classImageSliderWrapper)}
                     style={{
-                        position: (useStickyImageSlider && stickyImageSliderTopPosition) ? 'sticky' : 'static',
-                        top: (useStickyImageSlider && stickyImageSliderTopPosition) ? `${stickyImageSliderTopPosition}px` : 'unset',
+                        position: useStickyImageSlider && stickyImageSliderTopPosition ? 'sticky' : 'static',
+                        top: useStickyImageSlider && stickyImageSliderTopPosition ? `${stickyImageSliderTopPosition}px` : 'unset',
                     }}
                 >
                     <ImageSlider
@@ -138,19 +138,16 @@ const ProductDetailAction = ({
             >
                 <Show when={enableMultiSeller && data?.seller && data?.seller?.seller_name}>
                     <Link href={`/seller/${data?.seller?.seller_path}`}>
-                        <Typography
-                            variant="bd-2"
-                            className={cx(
-                                'line-clamp-1 capitalize',
-                                'leading-5',
-                            )}
-                            color="text-primary"
-                        >
+                        <Typography variant="bd-2" className={cx('line-clamp-1 capitalize', 'leading-5')} color="text-primary">
                             {parser(data?.seller?.seller_name || '')}
                         </Typography>
                     </Link>
                 </Show>
-                <Typography variant="h1" className="swift-page-title first-letter:uppercase mb-[12px] desktop:mt-[0px] tablet:mt-[0px] mobile:mt-[24px]">
+                <Typography
+                    variant="h1"
+                    id="swiftProductName"
+                    className="swift-page-title first-letter:uppercase mb-[12px] desktop:mt-[0px] tablet:mt-[0px] mobile:mt-[24px]"
+                >
                     {parser(data?.name || '-')}
                 </Typography>
                 <Show when={!isAwGiftCard && !loadPrice}>
@@ -170,7 +167,14 @@ const ProductDetailAction = ({
                         <Show when={isMobile}>
                             <div className={cx('product-detail-info-price-right', 'flex items-center gap-1.5')}>
                                 <Show when={enableWishlist}>
-                                    <Button variant="plain" icon={false} iconOnly={false} onClick={handleWishlist} className="!p-0 whitespace-nowrap">
+                                    <Button
+                                        id="swiftProductBtnWishlishMobile"
+                                        variant="plain"
+                                        icon={false}
+                                        iconOnly={false}
+                                        onClick={handleWishlist}
+                                        className="!p-0 whitespace-nowrap"
+                                    >
                                         <Typography color="text-neutral-500 hover:text-neutral-400 flex items-center" variant="bd-2a">
                                             <HeartIcon className="h-[20px] w-[20px]" />
                                         </Typography>
@@ -178,6 +182,7 @@ const ProductDetailAction = ({
                                 </Show>
                                 <Show when={enableProductCompare}>
                                     <Button
+                                        id="swiftProductBtnCompareMobile"
                                         variant="plain"
                                         icon={false}
                                         iconOnly={false}
@@ -198,7 +203,7 @@ const ProductDetailAction = ({
                     variant="plain"
                     className="!p-0 flex items-center"
                     onClick={() => {
-                            reviewRef?.current?.scrollIntoView({ behavior: 'smooth' });
+                        reviewRef?.current?.scrollIntoView({ behavior: 'smooth' });
                     }}
                 >
                     <div className="flex mt-[12px]">
@@ -267,7 +272,7 @@ const ProductDetailAction = ({
                                     className="w-[100%] h-[25px] absolute bottom-[0px]"
                                     style={{
                                         background:
-                                                'linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7497373949579832) 43%, rgba(255,255,255,0) 100%)',
+                                            'linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,0.7497373949579832) 43%, rgba(255,255,255,0) 100%)',
                                     }}
                                 />
                             </Show>
@@ -304,7 +309,14 @@ const ProductDetailAction = ({
                         )}
                     >
                         <Show when={enableWishlist}>
-                            <Button variant="plain" icon={false} iconOnly={false} onClick={handleWishlist} className="!p-0 whitespace-nowrap swift-action-towishlist">
+                            <Button
+                                id="swiftProductBtnWishlishDesktop"
+                                variant="plain"
+                                icon={false}
+                                iconOnly={false}
+                                onClick={handleWishlist}
+                                className="!p-0 whitespace-nowrap swift-action-towishlist"
+                            >
                                 <Typography color="text-neutral-500 hover:text-neutral-400 flex items-center" variant="bd-2a">
                                     {t('common:label:addToWishlist')}
                                     <HeartIcon className="h-[14px] w-[14px] ml-[6px]" />
@@ -313,6 +325,7 @@ const ProductDetailAction = ({
                         </Show>
                         <Show when={enableProductCompare}>
                             <Button
+                                id="swiftProductBtnCompareDesktop"
                                 variant="plain"
                                 icon={false}
                                 iconOnly={false}
@@ -331,7 +344,13 @@ const ProductDetailAction = ({
         </div>
 
         <Show when={!isMobile && useProductTabs}>
-            <div className={cx('swift-product-detail-tabs', 'desktop:mt-[64px] tablet:mt-[64px]', 'desktop:px-[0px] tablet:px-[16px] mobile:px-[16px]')}>
+            <div
+                className={cx(
+                    'swift-product-detail-tabs',
+                    'desktop:mt-[64px] tablet:mt-[64px]',
+                    'desktop:px-[0px] tablet:px-[16px] mobile:px-[16px]',
+                )}
+            >
                 <ProductTabs
                     data={expandData}
                     tabTitleWrapperClassName="[&>li:first-child>a]:!pl-[0px]"
@@ -366,7 +385,10 @@ const ProductDetailAction = ({
         </Show>
 
         <Show when={useReviewList}>
-            <div ref={reviewRef} className={cx('swift-product-list-review-container', 'mt-[48px]', 'desktop:px-[0px] tablet:px-[16px] mobile:px-[16px]')}>
+            <div
+                ref={reviewRef}
+                className={cx('swift-product-list-review-container', 'mt-[48px]', 'desktop:px-[0px] tablet:px-[16px] mobile:px-[16px]')}
+            >
                 <ReviewList t={t} data={data} storeConfig={storeConfig} isLogin={isLogin} />
             </div>
         </Show>
